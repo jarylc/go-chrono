@@ -2,6 +2,12 @@
 
 Tiny golang wrapper for [chrono.js](https://github.com/wanasit/chrono).
 
+## install
+
+```
+go get -u github.com/matthewmueller/chrono.go
+```
+
 ## example
 
 ```go
