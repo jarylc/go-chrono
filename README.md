@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"log"
 	"time"
-	"github.com/jarylc/go-chrono"
+	"github.com/jarylc/go-chrono/v2"
 )
 
 func main() {

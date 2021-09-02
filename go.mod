@@ -1,4 +1,4 @@
-module github.com/jarylc/go-chrono
+module github.com/jarylc/go-chrono/v2
 
 go 1.16
 
