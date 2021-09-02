@@ -2,6 +2,9 @@ dev:
 	@go run _examples/chrono.go
 
 build:
-	@./node_modules/.bin/browserify chrono.js --standalone chrono > chrono.out.js
+	@npm ci
+	@mkdir src
+	@npx browserify chrono.js --standalone chrono > src/chrono.out.js
+	@npx tsc src/chrono.out.js --esModuleInterop true --allowJs true --target es5 --outfile chrono.out.js
 	@go-bindata -pkg chrono chrono.out.js
-	@rm chrono.out.js
+	@rm -rf src chrono.out.js
