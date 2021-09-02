@@ -4,7 +4,7 @@ Tiny golang wrapper for [chrono-node](https://github.com/wanasit/chrono).
 ## Usage
 ### Installation
 ```
-go get -u github.com/jarylc/go-chrono
+go get -u github.com/jarylc/go-chrono/v2
 ```
 ### Example
 ```go
