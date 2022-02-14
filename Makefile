@@ -2,7 +2,8 @@ test:
 	@go test
 
 build:
-	@npm ci
+	@npm update
+	@npm audit fix
 	@mkdir src
 	@npx browserify chrono.js --standalone chrono > src/chrono.out.js
 	@npx tsc src/chrono.out.js --esModuleInterop true --allowJs true --target es5 --outfile chrono.out.js
