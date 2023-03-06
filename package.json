@@ -1,7 +1,7 @@
 {
-  "version": "2.5.0",
+  "version": "2.5.1",
   "dependencies": {
-    "chrono-node": "=2.5.0"
+    "chrono-node": "=2.5.1"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
