@@ -1,11 +1,15 @@
 package chrono
 
 import (
+	_ "embed"
 	"time"
 
 	"github.com/dop251/goja"
 	"github.com/pkg/errors"
 )
+
+//go:embed chrono.out.js
+var chronoJS string
 
 // Chrono struct
 type Chrono struct {
@@ -16,13 +20,8 @@ type Chrono struct {
 
 // New chrono instance
 func New() (chrono Chrono, err error) {
-	bytes, err := Asset("chrono.out.js")
-	if err != nil {
-		return chrono, errors.Wrap(err, "unable to read chrono file")
-	}
-
 	vm := goja.New()
-	prg, err := goja.Compile("chrono.js", string(bytes), false)
+	prg, err := goja.Compile("chrono.js", chronoJS, false)
 	if err != nil {
 		return chrono, errors.Wrap(err, "couldn't compile chrono")
 	}
