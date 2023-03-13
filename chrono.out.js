@@ -2776,7 +2776,7 @@ else {
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var dayjs_2 = require("../../../utils/dayjs");
                 var references = __importStar(require("../../../common/casualReferences"));
-                var PATTERN = /(now|today|tonight|tomorrow|tmr|tmrw|yesterday|last\s*night|(?<!\d\s*)day\s*after\s*tomorrow|(?<!\d\s*)day\s*before\s*yesterday)(?=\W|$)/i;
+                var PATTERN = /(now|today|tonight|tomorrow|tmr|tmrw|yesterday|last\s*night)(?=\W|$)/i;
                 var ENCasualDateParser = /** @class */ (function (_super) {
                     __extends(ENCasualDateParser, _super);
                     function ENCasualDateParser() {
@@ -2809,12 +2809,6 @@ else {
                                     }
                                     dayjs_2.assignSimilarDate(component, targetDate);
                                     component.imply("hour", 0);
-                                }
-                                if (lowerText.match(/after\s*tomorrow/)) {
-                                    return references.theDayAfter(context.reference, 2);
-                                }
-                                if (lowerText.match(/before\s*yesterday/)) {
-                                    return references.theDayBefore(context.reference, 2);
                                 }
                                 break;
                         }
