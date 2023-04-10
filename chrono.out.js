@@ -1062,29 +1062,37 @@ else {
                         if (!fromResult.start.isOnlyWeekdayComponent() && !toResult.start.isOnlyWeekdayComponent()) {
                             toResult.start.getCertainComponents().forEach(function (key) {
                                 if (!fromResult.start.isCertain(key)) {
-                                    fromResult.start.assign(key, toResult.start.get(key));
+                                    fromResult.start.imply(key, toResult.start.get(key));
                                 }
                             });
                             fromResult.start.getCertainComponents().forEach(function (key) {
                                 if (!toResult.start.isCertain(key)) {
-                                    toResult.start.assign(key, fromResult.start.get(key));
+                                    toResult.start.imply(key, fromResult.start.get(key));
                                 }
                             });
                         }
                         if (fromResult.start.date().getTime() > toResult.start.date().getTime()) {
                             var fromMoment = fromResult.start.dayjs();
                             var toMoment = toResult.start.dayjs();
-                            if (fromResult.start.isOnlyWeekdayComponent() && fromMoment.add(-7, "days").isBefore(toMoment)) {
+                            if (toResult.start.isOnlyWeekdayComponent() && toMoment.add(7, "days").isAfter(fromMoment)) {
+                                toMoment = toMoment.add(7, "days");
+                                toResult.start.imply("day", toMoment.date());
+                                toResult.start.imply("month", toMoment.month() + 1);
+                                toResult.start.imply("year", toMoment.year());
+                            }
+                            else if (fromResult.start.isOnlyWeekdayComponent() && fromMoment.add(-7, "days").isBefore(toMoment)) {
                                 fromMoment = fromMoment.add(-7, "days");
                                 fromResult.start.imply("day", fromMoment.date());
                                 fromResult.start.imply("month", fromMoment.month() + 1);
                                 fromResult.start.imply("year", fromMoment.year());
                             }
-                            else if (toResult.start.isOnlyWeekdayComponent() && toMoment.add(7, "days").isAfter(fromMoment)) {
-                                toMoment = toMoment.add(7, "days");
-                                toResult.start.imply("day", toMoment.date());
-                                toResult.start.imply("month", toMoment.month() + 1);
+                            else if (toResult.start.isDateWithUnknownYear() && toMoment.add(1, "years").isAfter(fromMoment)) {
+                                toMoment = toMoment.add(1, "years");
                                 toResult.start.imply("year", toMoment.year());
+                            }
+                            else if (fromResult.start.isDateWithUnknownYear() && fromMoment.add(-1, "years").isBefore(toMoment)) {
+                                fromMoment = fromMoment.add(-1, "years");
+                                fromResult.start.imply("year", fromMoment.year());
                             }
                             else {
                                 _c = [fromResult, toResult], toResult = _c[0], fromResult = _c[1];
@@ -1134,203 +1142,11 @@ else {
             }, { "../../calculation/mergingCalculation": 2, "../abstractRefiners": 5 }], 14: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
+                var timezone_1 = require("../../timezone");
                 var TIMEZONE_NAME_PATTERN = new RegExp("^\\s*,?\\s*\\(?([A-Z]{2,4})\\)?(?=\\W|$)", "i");
-                var DEFAULT_TIMEZONE_ABBR_MAP = {
-                    ACDT: 630,
-                    ACST: 570,
-                    ADT: -180,
-                    AEDT: 660,
-                    AEST: 600,
-                    AFT: 270,
-                    AKDT: -480,
-                    AKST: -540,
-                    ALMT: 360,
-                    AMST: -180,
-                    AMT: -240,
-                    ANAST: 720,
-                    ANAT: 720,
-                    AQTT: 300,
-                    ART: -180,
-                    AST: -240,
-                    AWDT: 540,
-                    AWST: 480,
-                    AZOST: 0,
-                    AZOT: -60,
-                    AZST: 300,
-                    AZT: 240,
-                    BNT: 480,
-                    BOT: -240,
-                    BRST: -120,
-                    BRT: -180,
-                    BST: 60,
-                    BTT: 360,
-                    CAST: 480,
-                    CAT: 120,
-                    CCT: 390,
-                    CDT: -300,
-                    CEST: 120,
-                    CET: 60,
-                    CHADT: 825,
-                    CHAST: 765,
-                    CKT: -600,
-                    CLST: -180,
-                    CLT: -240,
-                    COT: -300,
-                    CST: -360,
-                    CVT: -60,
-                    CXT: 420,
-                    ChST: 600,
-                    DAVT: 420,
-                    EASST: -300,
-                    EAST: -360,
-                    EAT: 180,
-                    ECT: -300,
-                    EDT: -240,
-                    EEST: 180,
-                    EET: 120,
-                    EGST: 0,
-                    EGT: -60,
-                    EST: -300,
-                    ET: -300,
-                    FJST: 780,
-                    FJT: 720,
-                    FKST: -180,
-                    FKT: -240,
-                    FNT: -120,
-                    GALT: -360,
-                    GAMT: -540,
-                    GET: 240,
-                    GFT: -180,
-                    GILT: 720,
-                    GMT: 0,
-                    GST: 240,
-                    GYT: -240,
-                    HAA: -180,
-                    HAC: -300,
-                    HADT: -540,
-                    HAE: -240,
-                    HAP: -420,
-                    HAR: -360,
-                    HAST: -600,
-                    HAT: -90,
-                    HAY: -480,
-                    HKT: 480,
-                    HLV: -210,
-                    HNA: -240,
-                    HNC: -360,
-                    HNE: -300,
-                    HNP: -480,
-                    HNR: -420,
-                    HNT: -150,
-                    HNY: -540,
-                    HOVT: 420,
-                    ICT: 420,
-                    IDT: 180,
-                    IOT: 360,
-                    IRDT: 270,
-                    IRKST: 540,
-                    IRKT: 540,
-                    IRST: 210,
-                    IST: 330,
-                    JST: 540,
-                    KGT: 360,
-                    KRAST: 480,
-                    KRAT: 480,
-                    KST: 540,
-                    KUYT: 240,
-                    LHDT: 660,
-                    LHST: 630,
-                    LINT: 840,
-                    MAGST: 720,
-                    MAGT: 720,
-                    MART: -510,
-                    MAWT: 300,
-                    MDT: -360,
-                    MESZ: 120,
-                    MEZ: 60,
-                    MHT: 720,
-                    MMT: 390,
-                    MSD: 240,
-                    MSK: 240,
-                    MST: -420,
-                    MUT: 240,
-                    MVT: 300,
-                    MYT: 480,
-                    NCT: 660,
-                    NDT: -90,
-                    NFT: 690,
-                    NOVST: 420,
-                    NOVT: 360,
-                    NPT: 345,
-                    NST: -150,
-                    NUT: -660,
-                    NZDT: 780,
-                    NZST: 720,
-                    OMSST: 420,
-                    OMST: 420,
-                    PDT: -420,
-                    PET: -300,
-                    PETST: 720,
-                    PETT: 720,
-                    PGT: 600,
-                    PHOT: 780,
-                    PHT: 480,
-                    PKT: 300,
-                    PMDT: -120,
-                    PMST: -180,
-                    PONT: 660,
-                    PST: -480,
-                    PT: -480,
-                    PWT: 540,
-                    PYST: -180,
-                    PYT: -240,
-                    RET: 240,
-                    SAMT: 240,
-                    SAST: 120,
-                    SBT: 660,
-                    SCT: 240,
-                    SGT: 480,
-                    SRT: -180,
-                    SST: -660,
-                    TAHT: -600,
-                    TFT: 300,
-                    TJT: 300,
-                    TKT: 780,
-                    TLT: 540,
-                    TMT: 300,
-                    TVT: 720,
-                    ULAT: 480,
-                    UTC: 0,
-                    UYST: -120,
-                    UYT: -180,
-                    UZT: 300,
-                    VET: -210,
-                    VLAST: 660,
-                    VLAT: 660,
-                    VUT: 660,
-                    WAST: 120,
-                    WAT: 60,
-                    WEST: 60,
-                    WESZ: 60,
-                    WET: 0,
-                    WEZ: 0,
-                    WFT: 720,
-                    WGST: -120,
-                    WGT: -180,
-                    WIB: 420,
-                    WIT: 540,
-                    WITA: 480,
-                    WST: 780,
-                    WT: 0,
-                    YAKST: 600,
-                    YAKT: 600,
-                    YAPT: 600,
-                    YEKST: 360,
-                    YEKT: 360,
-                };
                 var ExtractTimezoneAbbrRefiner = /** @class */ (function () {
                     function ExtractTimezoneAbbrRefiner(timezoneOverrides) {
-                        this.timezone = Object.assign(Object.assign({}, DEFAULT_TIMEZONE_ABBR_MAP), timezoneOverrides);
+                        this.timezoneOverrides = timezoneOverrides;
                     }
                     ExtractTimezoneAbbrRefiner.prototype.refine = function (context, results) {
                         var _this = this;
@@ -1344,8 +1160,10 @@ else {
                                 return;
                             }
                             var timezoneAbbr = match[1].toUpperCase();
-                            var extractedTimezoneOffset = (_b = (_a = timezoneOverrides[timezoneAbbr]) !== null && _a !== void 0 ? _a : _this.timezone[timezoneAbbr]) !== null && _b !== void 0 ? _b : null;
-                            if (extractedTimezoneOffset === null) {
+                            var refDate = (_b = (_a = result.start.date()) !== null && _a !== void 0 ? _a : result.refDate) !== null && _b !== void 0 ? _b : new Date();
+                            var tzOverrides = Object.assign(Object.assign({}, _this.timezoneOverrides), timezoneOverrides);
+                            var extractedTimezoneOffset = timezone_1.toTimezoneOffset(timezoneAbbr, refDate, tzOverrides);
+                            if (extractedTimezoneOffset == null) {
                                 return;
                             }
                             context.debug(function () {
@@ -1378,7 +1196,7 @@ else {
                     return ExtractTimezoneAbbrRefiner;
                 }());
                 exports.default = ExtractTimezoneAbbrRefiner;
-            }, {}], 15: [function (require, module, exports) {
+            }, { "../../timezone": 144 }], 15: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var TIMEZONE_OFFSET_PATTERN = new RegExp("^\\s*(?:\\(?(?:GMT|UTC)\\s?)?([+-])(\\d{1,2})(?::?(\\d{2}))?\\)?", "i");
@@ -1449,20 +1267,6 @@ else {
                                     }
                                 }
                             }
-                            if (result.start.isOnlyDayMonthComponent() && refMoment.isAfter(result.start.dayjs())) {
-                                for (var i = 0; i < 3 && refMoment.isAfter(result.start.dayjs()); i++) {
-                                    result.start.imply("year", result.start.get("year") + 1);
-                                    context.debug(function () {
-                                        console.log("Forward yearly adjusted for ".concat(result, " (").concat(result.start, ")"));
-                                    });
-                                    if (result.end && !result.end.isCertain("year")) {
-                                        result.end.imply("year", result.end.get("year") + 1);
-                                        context.debug(function () {
-                                            console.log("Forward yearly adjusted for ".concat(result, " (").concat(result.end, ")"));
-                                        });
-                                    }
-                                }
-                            }
                             if (result.start.isOnlyWeekdayComponent() && refMoment.isAfter(result.start.dayjs())) {
                                 if (refMoment.day() >= result.start.get("weekday")) {
                                     refMoment = refMoment.day(result.start.get("weekday") + 7);
@@ -1489,6 +1293,20 @@ else {
                                     context.debug(function () {
                                         console.log("Forward weekly adjusted for ".concat(result, " (").concat(result.end, ")"));
                                     });
+                                }
+                            }
+                            if (result.start.isDateWithUnknownYear() && refMoment.isAfter(result.start.dayjs())) {
+                                for (var i = 0; i < 3 && refMoment.isAfter(result.start.dayjs()); i++) {
+                                    result.start.imply("year", result.start.get("year") + 1);
+                                    context.debug(function () {
+                                        console.log("Forward yearly adjusted for ".concat(result, " (").concat(result.start, ")"));
+                                    });
+                                    if (result.end && !result.end.isCertain("year")) {
+                                        result.end.imply("year", result.end.get("year") + 1);
+                                        context.debug(function () {
+                                            console.log("Forward yearly adjusted for ".concat(result, " (").concat(result.end, ")"));
+                                        });
+                                    }
                                 }
                             }
                         });
@@ -1628,9 +1446,9 @@ else {
                     if (strictMode === void 0) { strictMode = false; }
                     configuration.parsers.unshift(new ISOFormatParser_1.default());
                     configuration.refiners.unshift(new MergeWeekdayComponentRefiner_1.default());
-                    configuration.refiners.unshift(new ExtractTimezoneAbbrRefiner_1.default());
                     configuration.refiners.unshift(new ExtractTimezoneOffsetRefiner_1.default());
                     configuration.refiners.unshift(new OverlapRemovalRefiner_1.default());
+                    configuration.refiners.push(new ExtractTimezoneAbbrRefiner_1.default());
                     configuration.refiners.push(new OverlapRemovalRefiner_1.default());
                     configuration.refiners.push(new ForwardDateRefiner_1.default());
                     configuration.refiners.push(new UnlikelyFormatFilter_1.default(strictMode));
@@ -1665,7 +1483,7 @@ else {
                     return result;
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.parseDate = exports.parse = exports.casual = exports.strict = exports.es = exports.ru = exports.zh = exports.nl = exports.pt = exports.ja = exports.fr = exports.de = exports.Weekday = exports.Meridiem = exports.Chrono = exports.en = void 0;
+                exports.parseDate = exports.parse = exports.casual = exports.strict = exports.es = exports.ru = exports.zh = exports.nl = exports.pt = exports.ja = exports.fr = exports.de = exports.Month = exports.Weekday = exports.Meridiem = exports.Chrono = exports.en = void 0;
                 var en = __importStar(require("./locales/en"));
                 exports.en = en;
                 var chrono_1 = require("./chrono");
@@ -1685,6 +1503,21 @@ else {
                     Weekday[Weekday["FRIDAY"] = 5] = "FRIDAY";
                     Weekday[Weekday["SATURDAY"] = 6] = "SATURDAY";
                 })(Weekday = exports.Weekday || (exports.Weekday = {}));
+                var Month;
+                (function (Month) {
+                    Month[Month["JANUARY"] = 1] = "JANUARY";
+                    Month[Month["FEBRUARY"] = 2] = "FEBRUARY";
+                    Month[Month["MARCH"] = 3] = "MARCH";
+                    Month[Month["APRIL"] = 4] = "APRIL";
+                    Month[Month["MAY"] = 5] = "MAY";
+                    Month[Month["JUNE"] = 6] = "JUNE";
+                    Month[Month["JULY"] = 7] = "JULY";
+                    Month[Month["AUGUST"] = 8] = "AUGUST";
+                    Month[Month["SEPTEMBER"] = 9] = "SEPTEMBER";
+                    Month[Month["OCTOBER"] = 10] = "OCTOBER";
+                    Month[Month["NOVEMBER"] = 11] = "NOVEMBER";
+                    Month[Month["DECEMBER"] = 12] = "DECEMBER";
+                })(Month = exports.Month || (exports.Month = {}));
                 var de = __importStar(require("./locales/de"));
                 exports.de = de;
                 var fr = __importStar(require("./locales/fr"));
@@ -2464,7 +2297,7 @@ else {
             }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 34: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.FULL_MONTH_NAME_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
+                exports.parseTimeUnits = exports.TIME_UNITS_NO_ABBR_PATTERN = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.TIME_UNIT_DICTIONARY_NO_ABBR = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.FULL_MONTH_NAME_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
                 var pattern_1 = require("../../utils/pattern");
                 var years_1 = require("../../calculation/years");
                 exports.WEEKDAY_DICTIONARY = {
@@ -2566,40 +2399,25 @@ else {
                     "thirty first": 31,
                     "thirty-first": 31,
                 };
-                exports.TIME_UNIT_DICTIONARY = {
-                    s: "second",
-                    sec: "second",
+                exports.TIME_UNIT_DICTIONARY_NO_ABBR = {
                     second: "second",
                     seconds: "second",
-                    m: "minute",
-                    min: "minute",
-                    mins: "minute",
                     minute: "minute",
                     minutes: "minute",
-                    h: "hour",
-                    hr: "hour",
-                    hrs: "hour",
                     hour: "hour",
                     hours: "hour",
-                    d: "d",
                     day: "d",
                     days: "d",
-                    w: "w",
                     week: "week",
                     weeks: "week",
-                    mo: "month",
-                    mon: "month",
-                    mos: "month",
                     month: "month",
                     months: "month",
-                    qtr: "quarter",
                     quarter: "quarter",
                     quarters: "quarter",
-                    y: "year",
-                    yr: "year",
                     year: "year",
                     years: "year",
                 };
+                exports.TIME_UNIT_DICTIONARY = Object.assign({ s: "second", sec: "second", second: "second", seconds: "second", m: "minute", min: "minute", mins: "minute", minute: "minute", minutes: "minute", h: "hour", hr: "hour", hrs: "hour", hour: "hour", hours: "hour", d: "d", day: "d", days: "d", w: "w", week: "week", weeks: "week", mo: "month", mon: "month", mos: "month", month: "month", months: "month", qtr: "quarter", quarter: "quarter", quarters: "quarter", y: "year", yr: "year", year: "year", years: "year" }, exports.TIME_UNIT_DICTIONARY_NO_ABBR);
                 exports.NUMBER_PATTERN = "(?:".concat(pattern_1.matchAnyPattern(exports.INTEGER_WORD_DICTIONARY), "|[0-9]+|[0-9]+\\.[0-9]+|half(?:\\s{0,2}an?)?|an?\\b(?:\\s{0,2}few)?|few|several|the|a?\\s{0,2}couple\\s{0,2}(?:of)?)");
                 function parseNumberPattern(match) {
                     var num = match.toLowerCase();
@@ -2654,7 +2472,9 @@ else {
                 exports.parseYear = parseYear;
                 var SINGLE_TIME_UNIT_PATTERN = "(".concat(exports.NUMBER_PATTERN, ")\\s{0,3}(").concat(pattern_1.matchAnyPattern(exports.TIME_UNIT_DICTIONARY), ")");
                 var SINGLE_TIME_UNIT_REGEX = new RegExp(SINGLE_TIME_UNIT_PATTERN, "i");
+                var SINGLE_TIME_UNIT_NO_ABBR_PATTERN = "(".concat(exports.NUMBER_PATTERN, ")\\s{0,3}(").concat(pattern_1.matchAnyPattern(exports.TIME_UNIT_DICTIONARY_NO_ABBR), ")");
                 exports.TIME_UNITS_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_PATTERN);
+                exports.TIME_UNITS_NO_ABBR_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_NO_ABBR_PATTERN);
                 function parseTimeUnits(timeunitText) {
                     var fragments = {};
                     var remainingText = timeunitText;
@@ -2727,7 +2547,7 @@ else {
                     return configurations_1.includeCommonConfiguration({
                         parsers: [
                             new SlashDateFormatParser_1.default(littleEndian),
-                            new ENTimeUnitWithinFormatParser_1.default(),
+                            new ENTimeUnitWithinFormatParser_1.default(strictMode),
                             new ENMonthNameLittleEndianParser_1.default(),
                             new ENMonthNameMiddleEndianParser_1.default(),
                             new ENWeekdayParser_1.default(),
@@ -3234,8 +3054,8 @@ else {
                 var results_1 = require("../../../results");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var timeunits_1 = require("../../../utils/timeunits");
-                var PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_PATTERN, ")\\s{0,5}(?:ago|before|earlier)(?=(?:\\W|$))"), "i");
-                var STRICT_PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_PATTERN, ")\\s{0,5}ago(?=(?:\\W|$))"), "i");
+                var PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_PATTERN, ")\\s{0,5}(?:ago|before|earlier)(?=\\W|$)"), "i");
+                var STRICT_PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_NO_ABBR_PATTERN, ")\\s{0,5}(?:ago|before|earlier)(?=\\W|$)"), "i");
                 var ENTimeUnitAgoFormatParser = /** @class */ (function (_super) {
                     __extends(ENTimeUnitAgoFormatParser, _super);
                     function ENTimeUnitAgoFormatParser(strictMode) {
@@ -3262,13 +3082,17 @@ else {
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var timeunits_1 = require("../../../utils/timeunits");
                 var PATTERN = new RegExp("(this|last|past|next|after|\\+|-)\\s*(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
+                var PATTERN_NO_ABBR = new RegExp("(this|last|past|next|after|\\+|-)\\s*(".concat(constants_1.TIME_UNITS_NO_ABBR_PATTERN, ")(?=\\W|$)"), "i");
                 var ENTimeUnitCasualRelativeFormatParser = /** @class */ (function (_super) {
                     __extends(ENTimeUnitCasualRelativeFormatParser, _super);
-                    function ENTimeUnitCasualRelativeFormatParser() {
-                        return _super !== null && _super.apply(this, arguments) || this;
+                    function ENTimeUnitCasualRelativeFormatParser(allowAbbreviations) {
+                        if (allowAbbreviations === void 0) { allowAbbreviations = true; }
+                        var _this = _super.call(this) || this;
+                        _this.allowAbbreviations = allowAbbreviations;
+                        return _this;
                     }
                     ENTimeUnitCasualRelativeFormatParser.prototype.innerPattern = function () {
-                        return PATTERN;
+                        return this.allowAbbreviations ? PATTERN : PATTERN_NO_ABBR;
                     };
                     ENTimeUnitCasualRelativeFormatParser.prototype.innerExtract = function (context, match) {
                         var prefix = match[1].toLowerCase();
@@ -3292,7 +3116,7 @@ else {
                 var results_1 = require("../../../results");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_PATTERN, ")\\s{0,5}(?:later|after|from now|henceforth|forward|out)") + "(?=(?:\\W|$))", "i");
-                var STRICT_PATTERN = new RegExp("" + "(" + constants_1.TIME_UNITS_PATTERN + ")" + "(later|from now)" + "(?=(?:\\W|$))", "i");
+                var STRICT_PATTERN = new RegExp("" + "(" + constants_1.TIME_UNITS_NO_ABBR_PATTERN + ")" + "(later|from now)" + "(?=(?:\\W|$))", "i");
                 var GROUP_NUM_TIMEUNITS = 1;
                 var ENTimeUnitLaterFormatParser = /** @class */ (function (_super) {
                     __extends(ENTimeUnitLaterFormatParser, _super);
@@ -3317,15 +3141,22 @@ else {
                 var constants_1 = require("../constants");
                 var results_1 = require("../../../results");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
+                var PATTERN_WITHOUT_PREFIX = new RegExp("(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
                 var PATTERN_WITH_PREFIX = new RegExp("(?:within|in|for)\\s*" +
                     "(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
-                var PATTERN_WITHOUT_PREFIX = new RegExp("(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
+                var PATTERN_WITH_PREFIX_STRICT = new RegExp("(?:within|in|for)\\s*" +
+                    "(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_NO_ABBR_PATTERN, ")(?=\\W|$)"), "i");
                 var ENTimeUnitWithinFormatParser = /** @class */ (function (_super) {
                     __extends(ENTimeUnitWithinFormatParser, _super);
-                    function ENTimeUnitWithinFormatParser() {
-                        return _super !== null && _super.apply(this, arguments) || this;
+                    function ENTimeUnitWithinFormatParser(strictMode) {
+                        var _this = _super.call(this) || this;
+                        _this.strictMode = strictMode;
+                        return _this;
                     }
                     ENTimeUnitWithinFormatParser.prototype.innerPattern = function (context) {
+                        if (this.strictMode) {
+                            return PATTERN_WITH_PREFIX_STRICT;
+                        }
                         return context.option.forwardDate ? PATTERN_WITHOUT_PREFIX : PATTERN_WITH_PREFIX;
                     };
                     ENTimeUnitWithinFormatParser.prototype.innerExtract = function (context, match) {
@@ -6351,6 +6182,9 @@ else {
                     минуток: "minute",
                     минутки: "minute",
                     минутку: "minute",
+                    минуточек: "minute",
+                    минуточки: "minute",
+                    минуточку: "minute",
                     час: "hour",
                     часов: "hour",
                     часа: "hour",
@@ -9163,7 +8997,7 @@ else {
                         }
                         else {
                             this.instant = (_a = input.instant) !== null && _a !== void 0 ? _a : new Date();
-                            this.timezoneOffset = timezone_1.toTimezoneOffset(input.timezone);
+                            this.timezoneOffset = timezone_1.toTimezoneOffset(input.timezone, this.instant);
                         }
                     }
                     ReferenceWithTimezone.prototype.getDateWithAdjustedTimezone = function () {
@@ -9252,8 +9086,8 @@ else {
                     ParsingComponents.prototype.isOnlyWeekdayComponent = function () {
                         return this.isCertain("weekday") && !this.isCertain("day") && !this.isCertain("month");
                     };
-                    ParsingComponents.prototype.isOnlyDayMonthComponent = function () {
-                        return this.isCertain("day") && this.isCertain("month") && !this.isCertain("year");
+                    ParsingComponents.prototype.isDateWithUnknownYear = function () {
+                        return this.isCertain("month") && !this.isCertain("year");
                     };
                     ParsingComponents.prototype.isValidDate = function () {
                         var date = this.dateWithoutTimezoneAdjustment();
@@ -9359,8 +9193,13 @@ else {
                 exports.ParsingResult = ParsingResult;
             }, { "./timezone": 144, "./utils/dayjs": 145, "dayjs": 148, "dayjs/plugin/quarterOfYear": 149 }], 144: [function (require, module, exports) {
                 "use strict";
+                var __importDefault = (this && this.__importDefault) || function (mod) {
+                    return (mod && mod.__esModule) ? mod : { "default": mod };
+                };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.toTimezoneOffset = exports.TIMEZONE_ABBR_MAP = void 0;
+                exports.toTimezoneOffset = exports.getLastWeekdayOfMonth = exports.getNthWeekdayOfMonth = exports.TIMEZONE_ABBR_MAP = void 0;
+                var dayjs_1 = __importDefault(require("dayjs"));
+                var index_1 = require("./index");
                 exports.TIMEZONE_ABBR_MAP = {
                     ACDT: 630,
                     ACST: 570,
@@ -9395,7 +9234,12 @@ else {
                     CCT: 390,
                     CDT: -300,
                     CEST: 120,
-                    CET: 60,
+                    CET: {
+                        timezoneOffsetDuringDst: 2 * 60,
+                        timezoneOffsetNonDst: 60,
+                        dstStart: function (year) { return getLastWeekdayOfMonth(year, index_1.Month.MARCH, index_1.Weekday.SUNDAY, 2); },
+                        dstEnd: function (year) { return getLastWeekdayOfMonth(year, index_1.Month.OCTOBER, index_1.Weekday.SUNDAY, 3); },
+                    },
                     CHADT: 825,
                     CHAST: 765,
                     CKT: -600,
@@ -9403,6 +9247,12 @@ else {
                     CLT: -240,
                     COT: -300,
                     CST: -360,
+                    CT: {
+                        timezoneOffsetDuringDst: -5 * 60,
+                        timezoneOffsetNonDst: -6 * 60,
+                        dstStart: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.MARCH, index_1.Weekday.SUNDAY, 2, 2); },
+                        dstEnd: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.NOVEMBER, index_1.Weekday.SUNDAY, 1, 2); },
+                    },
                     CVT: -60,
                     CXT: 420,
                     ChST: 600,
@@ -9417,7 +9267,12 @@ else {
                     EGST: 0,
                     EGT: -60,
                     EST: -300,
-                    ET: -300,
+                    ET: {
+                        timezoneOffsetDuringDst: -4 * 60,
+                        timezoneOffsetNonDst: -5 * 60,
+                        dstStart: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.MARCH, index_1.Weekday.SUNDAY, 2, 2); },
+                        dstEnd: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.NOVEMBER, index_1.Weekday.SUNDAY, 1, 2); },
+                    },
                     FJST: 780,
                     FJT: 720,
                     FKST: -180,
@@ -9479,6 +9334,12 @@ else {
                     MSD: 240,
                     MSK: 180,
                     MST: -420,
+                    MT: {
+                        timezoneOffsetDuringDst: -6 * 60,
+                        timezoneOffsetNonDst: -7 * 60,
+                        dstStart: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.MARCH, index_1.Weekday.SUNDAY, 2, 2); },
+                        dstEnd: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.NOVEMBER, index_1.Weekday.SUNDAY, 1, 2); },
+                    },
                     MUT: 240,
                     MVT: 300,
                     MYT: 480,
@@ -9506,7 +9367,12 @@ else {
                     PMST: -180,
                     PONT: 660,
                     PST: -480,
-                    PT: -480,
+                    PT: {
+                        timezoneOffsetDuringDst: -7 * 60,
+                        timezoneOffsetNonDst: -8 * 60,
+                        dstStart: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.MARCH, index_1.Weekday.SUNDAY, 2, 2); },
+                        dstEnd: function (year) { return getNthWeekdayOfMonth(year, index_1.Month.NOVEMBER, index_1.Weekday.SUNDAY, 1, 2); },
+                    },
                     PWT: 540,
                     PYST: -180,
                     PYT: -240,
@@ -9554,18 +9420,62 @@ else {
                     YEKST: 360,
                     YEKT: 360,
                 };
-                function toTimezoneOffset(timezoneInput) {
+                function getNthWeekdayOfMonth(year, month, weekday, n, hour) {
+                    if (hour === void 0) { hour = 0; }
+                    var dayOfMonth = 0;
+                    var i = 0;
+                    while (i < n) {
+                        dayOfMonth++;
+                        var date = new Date(year, month - 1, dayOfMonth);
+                        if (date.getDay() === weekday)
+                            i++;
+                    }
+                    return new Date(year, month - 1, dayOfMonth, hour);
+                }
+                exports.getNthWeekdayOfMonth = getNthWeekdayOfMonth;
+                function getLastWeekdayOfMonth(year, month, weekday, hour) {
+                    if (hour === void 0) { hour = 0; }
+                    var oneIndexedWeekday = weekday === 0 ? 7 : weekday;
+                    var date = new Date(year, month - 1 + 1, 1, 12);
+                    var firstWeekdayNextMonth = date.getDay() === 0 ? 7 : date.getDay();
+                    var dayDiff;
+                    if (firstWeekdayNextMonth === oneIndexedWeekday)
+                        dayDiff = 7;
+                    else if (firstWeekdayNextMonth < oneIndexedWeekday)
+                        dayDiff = 7 + firstWeekdayNextMonth - oneIndexedWeekday;
+                    else
+                        dayDiff = firstWeekdayNextMonth - oneIndexedWeekday;
+                    date.setDate(date.getDate() - dayDiff);
+                    return new Date(year, month - 1, date.getDate(), hour);
+                }
+                exports.getLastWeekdayOfMonth = getLastWeekdayOfMonth;
+                function toTimezoneOffset(timezoneInput, date, timezoneOverrides) {
+                    if (timezoneOverrides === void 0) { timezoneOverrides = {}; }
                     var _a;
-                    if (timezoneInput === null || timezoneInput === undefined) {
+                    if (timezoneInput == null) {
                         return null;
                     }
                     if (typeof timezoneInput === "number") {
                         return timezoneInput;
                     }
-                    return (_a = exports.TIMEZONE_ABBR_MAP[timezoneInput]) !== null && _a !== void 0 ? _a : null;
+                    var matchedTimezone = (_a = timezoneOverrides[timezoneInput]) !== null && _a !== void 0 ? _a : exports.TIMEZONE_ABBR_MAP[timezoneInput];
+                    if (matchedTimezone == null) {
+                        return null;
+                    }
+                    if (typeof matchedTimezone == "number") {
+                        return matchedTimezone;
+                    }
+                    if (date == null) {
+                        return null;
+                    }
+                    if (dayjs_1.default(date).isAfter(matchedTimezone.dstStart(date.getFullYear())) &&
+                        !dayjs_1.default(date).isAfter(matchedTimezone.dstEnd(date.getFullYear()))) {
+                        return matchedTimezone.timezoneOffsetDuringDst;
+                    }
+                    return matchedTimezone.timezoneOffsetNonDst;
                 }
                 exports.toTimezoneOffset = toTimezoneOffset;
-            }, {}], 145: [function (require, module, exports) {
+            }, { "./index": 21, "dayjs": 148 }], 145: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.implySimilarTime = exports.implySimilarDate = exports.assignSimilarTime = exports.assignSimilarDate = exports.implyTheNextDay = exports.assignTheNextDay = void 0;
