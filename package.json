@@ -1,7 +1,7 @@
 {
-  "version": "2.6.3",
+  "version": "2.6.4",
   "dependencies": {
-    "chrono-node": "=2.6.3"
+    "chrono-node": "=2.6.4"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
