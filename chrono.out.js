@@ -1489,13 +1489,15 @@ else {
                     return result;
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.parseDate = exports.parse = exports.casual = exports.strict = exports.uk = exports.es = exports.ru = exports.zh = exports.nl = exports.pt = exports.ja = exports.fr = exports.de = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = exports.en = void 0;
+                exports.parseDate = exports.parse = exports.casual = exports.strict = exports.uk = exports.es = exports.ru = exports.zh = exports.nl = exports.pt = exports.ja = exports.fr = exports.de = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = exports.en = void 0;
                 var en = __importStar(require("./locales/en"));
                 exports.en = en;
                 var chrono_1 = require("./chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("./results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("./types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -1710,12 +1712,14 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var configurations_1 = require("../../configurations");
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -2324,7 +2328,7 @@ else {
                     ENDefaultConfiguration.prototype.createConfiguration = function (strictMode, littleEndian) {
                         if (strictMode === void 0) { strictMode = true; }
                         if (littleEndian === void 0) { littleEndian = false; }
-                        return configurations_1.includeCommonConfiguration({
+                        var options = configurations_1.includeCommonConfiguration({
                             parsers: [
                                 new SlashDateFormatParser_1.default(littleEndian),
                                 new ENTimeUnitWithinFormatParser_1.default(strictMode),
@@ -2337,12 +2341,11 @@ else {
                                 new ENTimeUnitAgoFormatParser_1.default(strictMode),
                                 new ENTimeUnitLaterFormatParser_1.default(strictMode),
                             ],
-                            refiners: [
-                                new ENMergeRelativeDateRefiner_1.default(),
-                                new ENMergeDateTimeRefiner_1.default(),
-                                new ENMergeDateRangeRefiner_1.default(),
-                            ],
+                            refiners: [new ENMergeRelativeDateRefiner_1.default(), new ENMergeDateTimeRefiner_1.default()],
                         }, strictMode);
+                        options.refiners.push(new ENMergeDateTimeRefiner_1.default());
+                        options.refiners.push(new ENMergeDateRangeRefiner_1.default());
+                        return options;
                     };
                     return ENDefaultConfiguration;
                 }());
@@ -2551,11 +2554,13 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.parseDate = exports.parse = exports.GB = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.parseDate = exports.parse = exports.GB = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -3473,12 +3478,14 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var configurations_1 = require("../../configurations");
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -3983,12 +3990,14 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var configurations_1 = require("../../configurations");
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -4529,7 +4538,7 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var JPStandardParser_1 = __importDefault(require("./parsers/JPStandardParser"));
                 var JPMergeDateRangeRefiner_1 = __importDefault(require("./refiners/JPMergeDateRangeRefiner"));
                 var JPCasualDateParser_1 = __importDefault(require("./parsers/JPCasualDateParser"));
@@ -4537,6 +4546,8 @@ else {
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -4948,12 +4959,14 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var configurations_1 = require("../../configurations");
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -5735,12 +5748,14 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var configurations_1 = require("../../configurations");
                 var chrono_1 = require("../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -6359,7 +6374,7 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var RUTimeUnitWithinFormatParser_1 = __importDefault(require("./parsers/RUTimeUnitWithinFormatParser"));
                 var RUMonthNameLittleEndianParser_1 = __importDefault(require("./parsers/RUMonthNameLittleEndianParser"));
                 var RUMonthNameParser_1 = __importDefault(require("./parsers/RUMonthNameParser"));
@@ -6376,6 +6391,8 @@ else {
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -7291,7 +7308,7 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.parseDate = exports.parse = exports.createConfiguration = exports.createCasualConfiguration = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.parseDate = exports.parse = exports.createConfiguration = exports.createCasualConfiguration = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var UKTimeUnitWithinFormatParser_1 = __importDefault(require("./parsers/UKTimeUnitWithinFormatParser"));
                 var UKMonthNameLittleEndianParser_1 = __importDefault(require("./parsers/UKMonthNameLittleEndianParser"));
                 var UKMonthNameParser_1 = __importDefault(require("./parsers/UKMonthNameParser"));
@@ -7308,6 +7325,8 @@ else {
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -7985,13 +8004,15 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.hans = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.hans = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var ExtractTimezoneOffsetRefiner_1 = __importDefault(require("../../../common/refiners/ExtractTimezoneOffsetRefiner"));
                 var configurations_1 = require("../../../configurations");
                 var chrono_1 = require("../../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
@@ -9008,13 +9029,15 @@ else {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
                 };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.hant = exports.Weekday = exports.Meridiem = exports.ParsingResult = exports.Chrono = void 0;
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.hant = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = void 0;
                 var ExtractTimezoneOffsetRefiner_1 = __importDefault(require("../../../common/refiners/ExtractTimezoneOffsetRefiner"));
                 var configurations_1 = require("../../../configurations");
                 var chrono_1 = require("../../../chrono");
                 Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
                 var results_1 = require("../../../results");
                 Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
                 var types_1 = require("../../../types");
                 Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
                 Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
