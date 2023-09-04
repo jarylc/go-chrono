@@ -641,10 +641,10 @@ else {
                         return "(^|\\s|T|\\b)";
                     };
                     AbstractTimeExpressionParser.prototype.primarySuffix = function () {
-                        return "(?=\\W|$)";
+                        return "(?!/)(?=\\W|$)";
                     };
                     AbstractTimeExpressionParser.prototype.followingSuffix = function () {
-                        return "(?=\\W|$)";
+                        return "(?!/)(?=\\W|$)";
                     };
                     AbstractTimeExpressionParser.prototype.pattern = function (context) {
                         return this.getPrimaryTimePatternThroughCache();
@@ -4493,7 +4493,7 @@ else {
                         return _super !== null && _super.apply(this, arguments) || this;
                     }
                     FRMergeDateRangeRefiner.prototype.patternBetween = function () {
-                        return /^\s*(à|a|-)\s*$/i;
+                        return /^\s*(à|a|au|-)\s*$/i;
                     };
                     return FRMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
@@ -4511,7 +4511,7 @@ else {
                         return _super !== null && _super.apply(this, arguments) || this;
                     }
                     FRMergeDateTimeRefiner.prototype.patternBetween = function () {
-                        return new RegExp("^\\s*(T|à|a|vers|de|,|-)?\\s*$");
+                        return new RegExp("^\\s*(T|à|a|au|vers|de|,|-)?\\s*$");
                     };
                     return FRMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
