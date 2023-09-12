@@ -135,6 +135,8 @@ else {
                             dateTimeComponent.imply("hour", dateTimeComponent.get("hour") + 12);
                         }
                     }
+                    dateTimeComponent.addTags(dateComponent.tags());
+                    dateTimeComponent.addTags(timeComponent.tags());
                     return dateTimeComponent;
                 }
                 exports.mergeDateTimeComponent = mergeDateTimeComponent;
@@ -431,6 +433,7 @@ else {
                     if (reference.timezoneOffset !== null) {
                         component.assign("timezoneOffset", targetDate.utcOffset());
                     }
+                    component.addTag("casualReference/now");
                     return component;
                 }
                 exports.now = now;
@@ -439,11 +442,12 @@ else {
                     var component = new results_1.ParsingComponents(reference, {});
                     dayjs_2.assignSimilarDate(component, targetDate);
                     dayjs_2.implySimilarTime(component, targetDate);
+                    component.addTag("casualReference/today");
                     return component;
                 }
                 exports.today = today;
                 function yesterday(reference) {
-                    return theDayBefore(reference, 1);
+                    return theDayBefore(reference, 1).addTag("casualReference/yesterday");
                 }
                 exports.yesterday = yesterday;
                 function theDayBefore(reference, numDay) {
@@ -451,7 +455,7 @@ else {
                 }
                 exports.theDayBefore = theDayBefore;
                 function tomorrow(reference) {
-                    return theDayAfter(reference, 1);
+                    return theDayAfter(reference, 1).addTag("casualReference/tomorrow");
                 }
                 exports.tomorrow = tomorrow;
                 function theDayAfter(reference, nDays) {
@@ -467,9 +471,10 @@ else {
                     if (implyHour === void 0) { implyHour = 22; }
                     var targetDate = dayjs_1.default(reference.instant);
                     var component = new results_1.ParsingComponents(reference, {});
+                    dayjs_2.assignSimilarDate(component, targetDate);
                     component.imply("hour", implyHour);
                     component.imply("meridiem", types_1.Meridiem.PM);
-                    dayjs_2.assignSimilarDate(component, targetDate);
+                    component.addTag("casualReference/tonight");
                     return component;
                 }
                 exports.tonight = tonight;
@@ -490,6 +495,7 @@ else {
                     var component = new results_1.ParsingComponents(reference, {});
                     component.imply("meridiem", types_1.Meridiem.PM);
                     component.imply("hour", implyHour);
+                    component.addTag("casualReference/evening");
                     return component;
                 }
                 exports.evening = evening;
@@ -501,6 +507,8 @@ else {
                     dayjs_2.assignSimilarDate(component, targetDate);
                     component.imply("hour", implyHour);
                     component.imply("meridiem", types_1.Meridiem.PM);
+                    component.addTag("casualReference/yesterday");
+                    component.addTag("casualReference/evening");
                     return component;
                 }
                 exports.yesterdayEvening = yesterdayEvening;
@@ -514,6 +522,7 @@ else {
                     component.imply("minute", 0);
                     component.imply("second", 0);
                     component.imply("millisecond", 0);
+                    component.addTag("casualReference/midnight");
                     return component;
                 }
                 exports.midnight = midnight;
@@ -525,6 +534,7 @@ else {
                     component.imply("minute", 0);
                     component.imply("second", 0);
                     component.imply("millisecond", 0);
+                    component.addTag("casualReference/morning");
                     return component;
                 }
                 exports.morning = morning;
@@ -536,6 +546,7 @@ else {
                     component.imply("minute", 0);
                     component.imply("second", 0);
                     component.imply("millisecond", 0);
+                    component.addTag("casualReference/afternoon");
                     return component;
                 }
                 exports.afternoon = afternoon;
@@ -546,6 +557,7 @@ else {
                     component.imply("minute", 0);
                     component.imply("second", 0);
                     component.imply("millisecond", 0);
+                    component.addTag("casualReference/noon");
                     return component;
                 }
                 exports.noon = noon;
@@ -2627,17 +2639,22 @@ else {
                         var component = context.createParsingComponents();
                         switch (lowerText) {
                             case "now":
-                                return references.now(context.reference);
+                                component = references.now(context.reference);
+                                break;
                             case "today":
-                                return references.today(context.reference);
+                                component = references.today(context.reference);
+                                break;
                             case "yesterday":
-                                return references.yesterday(context.reference);
+                                component = references.yesterday(context.reference);
+                                break;
                             case "tomorrow":
                             case "tmr":
                             case "tmrw":
-                                return references.tomorrow(context.reference);
+                                component = references.tomorrow(context.reference);
+                                break;
                             case "tonight":
-                                return references.tonight(context.reference);
+                                component = references.tonight(context.reference);
+                                break;
                             default:
                                 if (lowerText.match(/last\s*night/)) {
                                     if (targetDate.hour() > 6) {
@@ -2648,6 +2665,7 @@ else {
                                 }
                                 break;
                         }
+                        component.addTag("parser/ENCasualDateParser");
                         return component;
                     };
                     return ENCasualDateParser;
@@ -2693,21 +2711,30 @@ else {
                         return PATTERN;
                     };
                     ENCasualTimeParser.prototype.innerExtract = function (context, match) {
+                        var component = null;
                         switch (match[1].toLowerCase()) {
                             case "afternoon":
-                                return casualReferences.afternoon(context.reference);
+                                component = casualReferences.afternoon(context.reference);
+                                break;
                             case "evening":
                             case "night":
-                                return casualReferences.evening(context.reference);
+                                component = casualReferences.evening(context.reference);
+                                break;
                             case "midnight":
-                                return casualReferences.midnight(context.reference);
+                                component = casualReferences.midnight(context.reference);
+                                break;
                             case "morning":
-                                return casualReferences.morning(context.reference);
+                                component = casualReferences.morning(context.reference);
+                                break;
                             case "noon":
                             case "midday":
-                                return casualReferences.noon(context.reference);
+                                component = casualReferences.noon(context.reference);
+                                break;
                         }
-                        return null;
+                        if (component) {
+                            component.addTag("parser/ENCasualTimeParser");
+                        }
+                        return component;
                     };
                     return ENCasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
@@ -3032,33 +3059,34 @@ else {
                     };
                     ENTimeExpressionParser.prototype.extractPrimaryTimeComponents = function (context, match) {
                         var components = _super.prototype.extractPrimaryTimeComponents.call(this, context, match);
-                        if (components) {
-                            if (match[0].endsWith("night")) {
-                                var hour = components.get("hour");
-                                if (hour >= 6 && hour < 12) {
-                                    components.assign("hour", components.get("hour") + 12);
-                                    components.assign("meridiem", types_1.Meridiem.PM);
-                                }
-                                else if (hour < 6) {
-                                    components.assign("meridiem", types_1.Meridiem.AM);
-                                }
-                            }
-                            if (match[0].endsWith("afternoon")) {
+                        if (!components) {
+                            return components;
+                        }
+                        if (match[0].endsWith("night")) {
+                            var hour = components.get("hour");
+                            if (hour >= 6 && hour < 12) {
+                                components.assign("hour", components.get("hour") + 12);
                                 components.assign("meridiem", types_1.Meridiem.PM);
-                                var hour = components.get("hour");
-                                if (hour >= 0 && hour <= 6) {
-                                    components.assign("hour", components.get("hour") + 12);
-                                }
                             }
-                            if (match[0].endsWith("morning")) {
+                            else if (hour < 6) {
                                 components.assign("meridiem", types_1.Meridiem.AM);
-                                var hour = components.get("hour");
-                                if (hour < 12) {
-                                    components.assign("hour", components.get("hour"));
-                                }
                             }
                         }
-                        return components;
+                        if (match[0].endsWith("afternoon")) {
+                            components.assign("meridiem", types_1.Meridiem.PM);
+                            var hour = components.get("hour");
+                            if (hour >= 0 && hour <= 6) {
+                                components.assign("hour", components.get("hour") + 12);
+                            }
+                        }
+                        if (match[0].endsWith("morning")) {
+                            components.assign("meridiem", types_1.Meridiem.AM);
+                            var hour = components.get("hour");
+                            if (hour < 12) {
+                                components.assign("hour", components.get("hour"));
+                            }
+                        }
+                        return components.addTag("parser/ENTimeExpressionParser");
                     };
                     return ENTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
@@ -3157,7 +3185,8 @@ else {
                 var constants_1 = require("../constants");
                 var results_1 = require("../../../results");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
-                var PATTERN_WITHOUT_PREFIX = new RegExp("(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
+                var PATTERN_WITH_OPTIONAL_PREFIX = new RegExp("(?:(?:within|in|for)\\s*)?" +
+                    "(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
                 var PATTERN_WITH_PREFIX = new RegExp("(?:within|in|for)\\s*" +
                     "(?:(?:about|around|roughly|approximately|just)\\s*(?:~\\s*)?)?(".concat(constants_1.TIME_UNITS_PATTERN, ")(?=\\W|$)"), "i");
                 var PATTERN_WITH_PREFIX_STRICT = new RegExp("(?:within|in|for)\\s*" +
@@ -3173,7 +3202,7 @@ else {
                         if (this.strictMode) {
                             return PATTERN_WITH_PREFIX_STRICT;
                         }
-                        return context.option.forwardDate ? PATTERN_WITHOUT_PREFIX : PATTERN_WITH_PREFIX;
+                        return context.option.forwardDate ? PATTERN_WITH_OPTIONAL_PREFIX : PATTERN_WITH_PREFIX;
                     };
                     ENTimeUnitWithinFormatParser.prototype.innerExtract = function (context, match) {
                         var timeUnits = constants_1.parseTimeUnits(match[1]);
@@ -10064,6 +10093,7 @@ else {
                 exports.ReferenceWithTimezone = ReferenceWithTimezone;
                 var ParsingComponents = /** @class */ (function () {
                     function ParsingComponents(reference, knownComponents) {
+                        this._tags = new Set();
                         this.reference = reference;
                         this.knownValues = {};
                         this.impliedValues = {};
@@ -10151,7 +10181,7 @@ else {
                         return true;
                     };
                     ParsingComponents.prototype.toString = function () {
-                        return "[ParsingComponents {knownValues: ".concat(JSON.stringify(this.knownValues), ", impliedValues: ").concat(JSON.stringify(this.impliedValues), "}, reference: ").concat(JSON.stringify(this.reference), "]");
+                        return "[ParsingComponents {\n            tags: ".concat(JSON.stringify(Array.from(this._tags).sort()), ", \n            knownValues: ").concat(JSON.stringify(this.knownValues), ", \n            impliedValues: ").concat(JSON.stringify(this.impliedValues), "}, \n            reference: ").concat(JSON.stringify(this.reference), "]");
                     };
                     ParsingComponents.prototype.dayjs = function () {
                         return dayjs_1.default(this.date());
@@ -10160,6 +10190,20 @@ else {
                         var date = this.dateWithoutTimezoneAdjustment();
                         var timezoneAdjustment = this.reference.getSystemTimezoneAdjustmentMinute(date, this.get("timezoneOffset"));
                         return new Date(date.getTime() + timezoneAdjustment * 60000);
+                    };
+                    ParsingComponents.prototype.addTag = function (tag) {
+                        this._tags.add(tag);
+                        return this;
+                    };
+                    ParsingComponents.prototype.addTags = function (tags) {
+                        for (var _i = 0, tags_1 = tags; _i < tags_1.length; _i++) {
+                            var tag = tags_1[_i];
+                            this._tags.add(tag);
+                        }
+                        return this;
+                    };
+                    ParsingComponents.prototype.tags = function () {
+                        return new Set(this._tags);
                     };
                     ParsingComponents.prototype.dateWithoutTimezoneAdjustment = function () {
                         var date = new Date(this.get("year"), this.get("month") - 1, this.get("day"), this.get("hour"), this.get("minute"), this.get("second"), this.get("millisecond"));
@@ -10232,8 +10276,19 @@ else {
                     ParsingResult.prototype.date = function () {
                         return this.start.date();
                     };
+                    ParsingResult.prototype.tags = function () {
+                        var combinedTags = new Set(this.start.tags());
+                        if (this.end) {
+                            for (var _i = 0, _c = this.end.tags(); _i < _c.length; _i++) {
+                                var tag = _c[_i];
+                                combinedTags.add(tag);
+                            }
+                        }
+                        return combinedTags;
+                    };
                     ParsingResult.prototype.toString = function () {
-                        return "[ParsingResult {index: ".concat(this.index, ", text: '").concat(this.text, "', ...}]");
+                        var tags = Array.from(this.tags()).sort();
+                        return "[ParsingResult {index: ".concat(this.index, ", text: '").concat(this.text, "', tags: ").concat(JSON.stringify(tags), " ...}]");
                     };
                     return ParsingResult;
                 }());
