@@ -1,7 +1,7 @@
 {
-  "version": "2.7.4",
+  "version": "2.7.5",
   "dependencies": {
-    "chrono-node": "=2.7.4"
+    "chrono-node": "=2.7.5"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",

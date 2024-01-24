@@ -2564,8 +2564,9 @@ else {
                 var SINGLE_TIME_UNIT_PATTERN = "(".concat(exports.NUMBER_PATTERN, ")\\s{0,3}(").concat(pattern_1.matchAnyPattern(exports.TIME_UNIT_DICTIONARY), ")");
                 var SINGLE_TIME_UNIT_REGEX = new RegExp(SINGLE_TIME_UNIT_PATTERN, "i");
                 var SINGLE_TIME_UNIT_NO_ABBR_PATTERN = "(".concat(exports.NUMBER_PATTERN, ")\\s{0,3}(").concat(pattern_1.matchAnyPattern(exports.TIME_UNIT_DICTIONARY_NO_ABBR), ")");
-                exports.TIME_UNITS_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_PATTERN);
-                exports.TIME_UNITS_NO_ABBR_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_NO_ABBR_PATTERN);
+                var TIME_UNIT_CONNECTOR_PATTERN = "\\s{0,5},?(?:\\s*and)?\\s{0,5}";
+                exports.TIME_UNITS_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
+                exports.TIME_UNITS_NO_ABBR_PATTERN = pattern_1.repeatedTimeunitPattern("(?:(?:about|around)\\s{0,3})?", SINGLE_TIME_UNIT_NO_ABBR_PATTERN, TIME_UNIT_CONNECTOR_PATTERN);
                 function parseTimeUnits(timeunitText) {
                     var fragments = {};
                     var remainingText = timeunitText;
@@ -2881,7 +2882,7 @@ else {
                     "(".concat(constants_2.ORDINAL_NUMBER_PATTERN, ")\\s*") +
                     ")?" +
                     "(?:" +
-                    "(?:-|/|\\s*,?\\s*)" +
+                    "(?:-|/|\\s*,\\s*|\\s+)" +
                     "(".concat(constants_3.YEAR_PATTERN, ")") +
                     ")?" +
                     "(?=\\W|$)(?!\\:\\d)", "i");
@@ -3193,7 +3194,7 @@ else {
                 var results_1 = require("../../../results");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_PATTERN, ")\\s{0,5}(?:later|after|from now|henceforth|forward|out)") + "(?=(?:\\W|$))", "i");
-                var STRICT_PATTERN = new RegExp("" + "(" + constants_1.TIME_UNITS_NO_ABBR_PATTERN + ")" + "(later|from now)" + "(?=(?:\\W|$))", "i");
+                var STRICT_PATTERN = new RegExp("(".concat(constants_1.TIME_UNITS_NO_ABBR_PATTERN, ")\\s{0,5}(later|after|from now)(?=\\W|$)"), "i");
                 var GROUP_NUM_TIMEUNITS = 1;
                 var ENTimeUnitLaterFormatParser = /** @class */ (function (_super) {
                     __extends(ENTimeUnitLaterFormatParser, _super);
@@ -10700,9 +10701,10 @@ else {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.matchAnyPattern = exports.extractTerms = exports.repeatedTimeunitPattern = void 0;
-                function repeatedTimeunitPattern(prefix, singleTimeunitPattern) {
+                function repeatedTimeunitPattern(prefix, singleTimeunitPattern, connectorPattern) {
+                    if (connectorPattern === void 0) { connectorPattern = "\\s{0,5},?\\s{0,5}"; }
                     var singleTimeunitPatternNoCapture = singleTimeunitPattern.replace(/\((?!\?)/g, "(?:");
-                    return "".concat(prefix).concat(singleTimeunitPatternNoCapture, "\\s{0,5}(?:,?\\s{0,5}").concat(singleTimeunitPatternNoCapture, "){0,10}");
+                    return "".concat(prefix).concat(singleTimeunitPatternNoCapture, "(?:").concat(connectorPattern).concat(singleTimeunitPatternNoCapture, "){0,10}");
                 }
                 exports.repeatedTimeunitPattern = repeatedTimeunitPattern;
                 function extractTerms(dictionary) {
