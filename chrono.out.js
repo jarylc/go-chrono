@@ -668,6 +668,10 @@ else {
                     AbstractTimeExpressionParser.prototype.extract = function (context, match) {
                         var startComponents = this.extractPrimaryTimeComponents(context, match);
                         if (!startComponents) {
+                            if (match[0].match(/^\d{4}/)) {
+                                match.index += 4;
+                                return null;
+                            }
                             match.index += match[0].length;
                             return null;
                         }
@@ -678,8 +682,13 @@ else {
                         var remainingText = context.text.substring(match.index);
                         var followingPattern = this.getFollowingTimePatternThroughCache();
                         var followingMatch = followingPattern.exec(remainingText);
-                        if (text.match(/^\d{3,4}/) && followingMatch && followingMatch[0].match(/^\s*([+-])\s*\d{2,4}$/)) {
-                            return null;
+                        if (text.match(/^\d{3,4}/) && followingMatch) {
+                            if (followingMatch[0].match(/^\s*([+-])\s*\d{2,4}$/)) {
+                                return null;
+                            }
+                            if (followingMatch[0].match(/^\s*([+-])\s*\d{2}\W\d{2}/)) {
+                                return null;
+                            }
                         }
                         if (!followingMatch ||
                             followingMatch[0].match(/^\s*([+-])\s*\d{3,4}$/)) {
@@ -2822,7 +2831,7 @@ else {
                     "(".concat(pattern_1.matchAnyPattern(constants_1.MONTH_DICTIONARY), ")") +
                     "(?:" +
                     "(?:-|/|,?\\s{0,3})" +
-                    "(".concat(constants_2.YEAR_PATTERN, "(?![^\\s]\\d))") +
+                    "(".concat(constants_2.YEAR_PATTERN, "(?!\\w))") +
                     ")?" +
                     "(?=\\W|$)", "i");
                 var DATE_GROUP = 1;
@@ -3327,7 +3336,7 @@ else {
                         return _super !== null && _super.apply(this, arguments) || this;
                     }
                     ENMergeDateTimeRefiner.prototype.patternBetween = function () {
-                        return new RegExp("^\\s*(T|at|after|before|on|of|,|-)?\\s*$");
+                        return new RegExp("^\\s*(T|at|after|before|on|of|,|-|\\.|:)?\\s*$");
                     };
                     return ENMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
@@ -10069,11 +10078,6 @@ else {
                 }) : function (o, v) {
                     o["default"] = v;
                 });
-                var __exportStar = (this && this.__exportStar) || function (m, exports) {
-                    for (var p in m)
-                        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p))
-                            __createBinding(exports, m, p);
-                };
                 var __importStar = (this && this.__importStar) || function (mod) {
                     if (mod && mod.__esModule)
                         return mod;
@@ -10085,11 +10089,74 @@ else {
                     __setModuleDefault(result, mod);
                     return result;
                 };
+                var __importDefault = (this && this.__importDefault) || function (mod) {
+                    return (mod && mod.__esModule) ? mod : { "default": mod };
+                };
                 Object.defineProperty(exports, "__esModule", { value: true });
-                exports.hans = void 0;
-                __exportStar(require("./hant"), exports);
+                exports.createConfiguration = exports.createCasualConfiguration = exports.parseDate = exports.parse = exports.strict = exports.casual = exports.Weekday = exports.Meridiem = exports.ReferenceWithTimezone = exports.ParsingComponents = exports.ParsingResult = exports.Chrono = exports.hans = exports.hant = void 0;
+                var configurations_1 = require("../../configurations");
+                var chrono_1 = require("../../chrono");
+                Object.defineProperty(exports, "Chrono", { enumerable: true, get: function () { return chrono_1.Chrono; } });
+                var results_1 = require("../../results");
+                Object.defineProperty(exports, "ParsingResult", { enumerable: true, get: function () { return results_1.ParsingResult; } });
+                Object.defineProperty(exports, "ParsingComponents", { enumerable: true, get: function () { return results_1.ParsingComponents; } });
+                Object.defineProperty(exports, "ReferenceWithTimezone", { enumerable: true, get: function () { return results_1.ReferenceWithTimezone; } });
+                var types_1 = require("../../types");
+                Object.defineProperty(exports, "Meridiem", { enumerable: true, get: function () { return types_1.Meridiem; } });
+                Object.defineProperty(exports, "Weekday", { enumerable: true, get: function () { return types_1.Weekday; } });
+                var ExtractTimezoneOffsetRefiner_1 = __importDefault(require("../../common/refiners/ExtractTimezoneOffsetRefiner"));
+                var ZHHansDateParser_1 = __importDefault(require("./hans/parsers/ZHHansDateParser"));
+                var ZHHansDeadlineFormatParser_1 = __importDefault(require("./hans/parsers/ZHHansDeadlineFormatParser"));
+                var ZHHansRelationWeekdayParser_1 = __importDefault(require("./hans/parsers/ZHHansRelationWeekdayParser"));
+                var ZHHansTimeExpressionParser_1 = __importDefault(require("./hans/parsers/ZHHansTimeExpressionParser"));
+                var ZHHansWeekdayParser_1 = __importDefault(require("./hans/parsers/ZHHansWeekdayParser"));
+                var ZHHantCasualDateParser_1 = __importDefault(require("./hant/parsers/ZHHantCasualDateParser"));
+                var ZHHantDateParser_1 = __importDefault(require("./hant/parsers/ZHHantDateParser"));
+                var ZHHantDeadlineFormatParser_1 = __importDefault(require("./hant/parsers/ZHHantDeadlineFormatParser"));
+                var ZHHantRelationWeekdayParser_1 = __importDefault(require("./hant/parsers/ZHHantRelationWeekdayParser"));
+                var ZHHantTimeExpressionParser_1 = __importDefault(require("./hant/parsers/ZHHantTimeExpressionParser"));
+                var ZHHantWeekdayParser_1 = __importDefault(require("./hant/parsers/ZHHantWeekdayParser"));
+                var ZHHantMergeDateRangeRefiner_1 = __importDefault(require("./hant/refiners/ZHHantMergeDateRangeRefiner"));
+                var ZHHantMergeDateTimeRefiner_1 = __importDefault(require("./hant/refiners/ZHHantMergeDateTimeRefiner"));
+                exports.hant = __importStar(require("./hant"));
                 exports.hans = __importStar(require("./hans"));
-            }, { "./hans": 141, "./hant": 151 }], 161: [function (require, module, exports) {
+                exports.casual = new chrono_1.Chrono(createCasualConfiguration());
+                exports.strict = new chrono_1.Chrono(createConfiguration());
+                function parse(text, ref, option) {
+                    return exports.casual.parse(text, ref, option);
+                }
+                exports.parse = parse;
+                function parseDate(text, ref, option) {
+                    return exports.casual.parseDate(text, ref, option);
+                }
+                exports.parseDate = parseDate;
+                function createCasualConfiguration() {
+                    var option = createConfiguration();
+                    option.parsers.unshift(new ZHHantCasualDateParser_1.default());
+                    return option;
+                }
+                exports.createCasualConfiguration = createCasualConfiguration;
+                function createConfiguration() {
+                    var configuration = configurations_1.includeCommonConfiguration({
+                        parsers: [
+                            new ZHHantDateParser_1.default(),
+                            new ZHHansDateParser_1.default(),
+                            new ZHHantRelationWeekdayParser_1.default(),
+                            new ZHHansRelationWeekdayParser_1.default(),
+                            new ZHHantWeekdayParser_1.default(),
+                            new ZHHansWeekdayParser_1.default(),
+                            new ZHHantTimeExpressionParser_1.default(),
+                            new ZHHansTimeExpressionParser_1.default(),
+                            new ZHHantDeadlineFormatParser_1.default(),
+                            new ZHHansDeadlineFormatParser_1.default(),
+                        ],
+                        refiners: [new ZHHantMergeDateRangeRefiner_1.default(), new ZHHantMergeDateTimeRefiner_1.default()],
+                    });
+                    configuration.refiners = configuration.refiners.filter(function (refiner) { return !(refiner instanceof ExtractTimezoneOffsetRefiner_1.default); });
+                    return configuration;
+                }
+                exports.createConfiguration = createConfiguration;
+            }, { "../../chrono": 4, "../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../configurations": 20, "../../results": 161, "../../types": 163, "./hans": 141, "./hans/parsers/ZHHansDateParser": 143, "./hans/parsers/ZHHansDeadlineFormatParser": 144, "./hans/parsers/ZHHansRelationWeekdayParser": 145, "./hans/parsers/ZHHansTimeExpressionParser": 146, "./hans/parsers/ZHHansWeekdayParser": 147, "./hant": 151, "./hant/parsers/ZHHantCasualDateParser": 152, "./hant/parsers/ZHHantDateParser": 153, "./hant/parsers/ZHHantDeadlineFormatParser": 154, "./hant/parsers/ZHHantRelationWeekdayParser": 155, "./hant/parsers/ZHHantTimeExpressionParser": 156, "./hant/parsers/ZHHantWeekdayParser": 157, "./hant/refiners/ZHHantMergeDateRangeRefiner": 158, "./hant/refiners/ZHHantMergeDateTimeRefiner": 159 }], 161: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
