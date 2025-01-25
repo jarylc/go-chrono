@@ -140,7 +140,7 @@ else {
                     return dateTimeComponent;
                 }
                 exports.mergeDateTimeComponent = mergeDateTimeComponent;
-            }, { "../types": 164, "../utils/dayjs": 165 }], 3: [function (require, module, exports) {
+            }, { "../types": 165, "../utils/dayjs": 166 }], 3: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -177,7 +177,7 @@ else {
                     return dateMoment.year();
                 }
                 exports.findYearClosestToRef = findYearClosestToRef;
-            }, { "dayjs": 168 }], 4: [function (require, module, exports) {
+            }, { "dayjs": 169 }], 4: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -292,7 +292,7 @@ else {
                     return ParsingContext;
                 }());
                 exports.ParsingContext = ParsingContext;
-            }, { "./locales/en/configuration": 34, "./results": 162 }], 5: [function (require, module, exports) {
+            }, { "./locales/en/configuration": 34, "./results": 163 }], 5: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.MergingRefiner = exports.Filter = void 0;
@@ -414,7 +414,7 @@ else {
                     return backwardCount;
                 }
                 exports.getBackwardDaysToWeekday = getBackwardDaysToWeekday;
-            }, { "../../results": 162, "../../types": 164, "../../utils/timeunits": 167 }], 7: [function (require, module, exports) {
+            }, { "../../results": 163, "../../types": 165, "../../utils/timeunits": 168 }], 7: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -561,7 +561,7 @@ else {
                     return component;
                 }
                 exports.noon = noon;
-            }, { "../results": 162, "../types": 164, "../utils/dayjs": 165, "dayjs": 168 }], 8: [function (require, module, exports) {
+            }, { "../results": 163, "../types": 165, "../utils/dayjs": 166, "dayjs": 169 }], 8: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.AbstractParserWithWordBoundaryChecking = void 0;
@@ -937,7 +937,7 @@ else {
                     return AbstractTimeExpressionParser;
                 }());
                 exports.AbstractTimeExpressionParser = AbstractTimeExpressionParser;
-            }, { "../../types": 164 }], 10: [function (require, module, exports) {
+            }, { "../../types": 165 }], 10: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractParserWithWordBoundary_1 = require("./AbstractParserWithWordBoundary");
@@ -1080,7 +1080,7 @@ else {
                             var year = years_1.findYearClosestToRef(context.refDate, day, month);
                             result.start.imply("year", year);
                         }
-                        return result;
+                        return result.addTag("parser/SlashDateFormatParser");
                     };
                     return SlashDateFormatParser;
                 }());
@@ -1236,7 +1236,7 @@ else {
                     return ExtractTimezoneAbbrRefiner;
                 }());
                 exports.default = ExtractTimezoneAbbrRefiner;
-            }, { "../../timezone": 163 }], 15: [function (require, module, exports) {
+            }, { "../../timezone": 164 }], 15: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var TIMEZONE_OFFSET_PATTERN = new RegExp("^\\s*(?:\\(?(?:GMT|UTC)\\s?)?([+-])(\\d{1,2})(?::?(\\d{2}))?\\)?", "i");
@@ -1359,7 +1359,7 @@ else {
                     return ForwardDateRefiner;
                 }());
                 exports.default = ForwardDateRefiner;
-            }, { "../../utils/dayjs": 165, "dayjs": 168 }], 17: [function (require, module, exports) {
+            }, { "../../utils/dayjs": 166, "dayjs": 169 }], 17: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var abstractRefiners_1 = require("../abstractRefiners");
@@ -1581,7 +1581,7 @@ else {
                     return exports.casual.parseDate(text, ref, option);
                 }
                 exports.parseDate = parseDate;
-            }, { "./chrono": 4, "./locales/de": 23, "./locales/en": 36, "./locales/es": 57, "./locales/fr": 67, "./locales/ja": 80, "./locales/nl": 85, "./locales/pt": 103, "./locales/ru": 112, "./locales/uk": 127, "./locales/zh": 161, "./results": 162, "./types": 164 }], 22: [function (require, module, exports) {
+            }, { "./chrono": 4, "./locales/de": 23, "./locales/en": 36, "./locales/es": 58, "./locales/fr": 68, "./locales/ja": 81, "./locales/nl": 86, "./locales/pt": 104, "./locales/ru": 113, "./locales/uk": 128, "./locales/zh": 162, "./results": 163, "./types": 165 }], 22: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -1758,7 +1758,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../calculation/years": 3, "../../utils/pattern": 166 }], 23: [function (require, module, exports) {
+            }, { "../../calculation/years": 3, "../../utils/pattern": 167 }], 23: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1823,7 +1823,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/ISOFormatParser": 10, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/DECasualDateParser": 24, "./parsers/DECasualTimeParser": 25, "./parsers/DEMonthNameLittleEndianParser": 26, "./parsers/DESpecificTimeExpressionParser": 27, "./parsers/DETimeExpressionParser": 28, "./parsers/DETimeUnitRelativeFormatParser": 29, "./parsers/DETimeUnitWithinFormatParser": 30, "./parsers/DEWeekdayParser": 31, "./refiners/DEMergeDateRangeRefiner": 32, "./refiners/DEMergeDateTimeRefiner": 33 }], 24: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/ISOFormatParser": 10, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/DECasualDateParser": 24, "./parsers/DECasualTimeParser": 25, "./parsers/DEMonthNameLittleEndianParser": 26, "./parsers/DESpecificTimeExpressionParser": 27, "./parsers/DETimeExpressionParser": 28, "./parsers/DETimeUnitRelativeFormatParser": 29, "./parsers/DETimeUnitWithinFormatParser": 30, "./parsers/DEWeekdayParser": 31, "./refiners/DEMergeDateRangeRefiner": 32, "./refiners/DEMergeDateTimeRefiner": 33 }], 24: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -1920,7 +1920,7 @@ else {
                     return DECasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DECasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/dayjs": 165, "./DECasualTimeParser": 25, "dayjs": 168 }], 25: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/dayjs": 166, "./DECasualTimeParser": 25, "dayjs": 169 }], 25: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2000,7 +2000,7 @@ else {
                     return DECasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DECasualTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "../../../utils/timeunits": 167, "dayjs": 168 }], 26: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "../../../utils/timeunits": 168, "dayjs": 169 }], 26: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -2055,7 +2055,7 @@ else {
                     return DEMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DEMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 22 }], 27: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 22 }], 27: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var types_1 = require("../../../types");
@@ -2173,7 +2173,7 @@ else {
                     return DESpecificTimeExpressionParser;
                 }());
                 exports.default = DESpecificTimeExpressionParser;
-            }, { "../../../types": 164 }], 28: [function (require, module, exports) {
+            }, { "../../../types": 165 }], 28: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractTimeExpressionParser_1 = require("../../../common/parsers/AbstractTimeExpressionParser");
@@ -2234,7 +2234,7 @@ else {
                     return DETimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DETimeUnitAgoFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/pattern": 166, "../../../utils/timeunits": 167, "../constants": 22 }], 30: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/pattern": 167, "../../../utils/timeunits": 168, "../constants": 22 }], 30: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -2255,7 +2255,7 @@ else {
                     return DETimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DETimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 22 }], 31: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 22 }], 31: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -2303,7 +2303,7 @@ else {
                     return DEWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = DEWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 22 }], 32: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 22 }], 32: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2367,6 +2367,7 @@ else {
                 var ENMergeRelativeFollowByDateRefiner_1 = __importDefault(require("./refiners/ENMergeRelativeFollowByDateRefiner"));
                 var OverlapRemovalRefiner_1 = __importDefault(require("../../common/refiners/OverlapRemovalRefiner"));
                 var ENExtractYearSuffixRefiner_1 = __importDefault(require("./refiners/ENExtractYearSuffixRefiner"));
+                var ENUnlikelyFormatFilter_1 = __importDefault(require("./refiners/ENUnlikelyFormatFilter"));
                 var ENDefaultConfiguration = /** @class */ (function () {
                     function ENDefaultConfiguration() {
                     }
@@ -2378,6 +2379,7 @@ else {
                         option.parsers.push(new ENMonthNameParser_1.default());
                         option.parsers.push(new ENRelativeDateFormatParser_1.default());
                         option.parsers.push(new ENTimeUnitCasualRelativeFormatParser_1.default());
+                        option.refiners.push(new ENUnlikelyFormatFilter_1.default());
                         return option;
                     };
                     ENDefaultConfiguration.prototype.createConfiguration = function (strictMode, littleEndian) {
@@ -2409,7 +2411,7 @@ else {
                     return ENDefaultConfiguration;
                 }());
                 exports.default = ENDefaultConfiguration;
-            }, { "../../common/parsers/SlashDateFormatParser": 11, "../../common/refiners/OverlapRemovalRefiner": 18, "../../configurations": 20, "./parsers/ENCasualDateParser": 37, "./parsers/ENCasualTimeParser": 38, "./parsers/ENMonthNameLittleEndianParser": 39, "./parsers/ENMonthNameMiddleEndianParser": 40, "./parsers/ENMonthNameParser": 41, "./parsers/ENRelativeDateFormatParser": 42, "./parsers/ENSlashMonthFormatParser": 43, "./parsers/ENTimeExpressionParser": 44, "./parsers/ENTimeUnitAgoFormatParser": 45, "./parsers/ENTimeUnitCasualRelativeFormatParser": 46, "./parsers/ENTimeUnitLaterFormatParser": 47, "./parsers/ENTimeUnitWithinFormatParser": 48, "./parsers/ENWeekdayParser": 49, "./parsers/ENYearMonthDayParser": 50, "./refiners/ENExtractYearSuffixRefiner": 51, "./refiners/ENMergeDateRangeRefiner": 52, "./refiners/ENMergeDateTimeRefiner": 53, "./refiners/ENMergeRelativeAfterDateRefiner": 54, "./refiners/ENMergeRelativeFollowByDateRefiner": 55 }], 35: [function (require, module, exports) {
+            }, { "../../common/parsers/SlashDateFormatParser": 11, "../../common/refiners/OverlapRemovalRefiner": 18, "../../configurations": 20, "./parsers/ENCasualDateParser": 37, "./parsers/ENCasualTimeParser": 38, "./parsers/ENMonthNameLittleEndianParser": 39, "./parsers/ENMonthNameMiddleEndianParser": 40, "./parsers/ENMonthNameParser": 41, "./parsers/ENRelativeDateFormatParser": 42, "./parsers/ENSlashMonthFormatParser": 43, "./parsers/ENTimeExpressionParser": 44, "./parsers/ENTimeUnitAgoFormatParser": 45, "./parsers/ENTimeUnitCasualRelativeFormatParser": 46, "./parsers/ENTimeUnitLaterFormatParser": 47, "./parsers/ENTimeUnitWithinFormatParser": 48, "./parsers/ENWeekdayParser": 49, "./parsers/ENYearMonthDayParser": 50, "./refiners/ENExtractYearSuffixRefiner": 51, "./refiners/ENMergeDateRangeRefiner": 52, "./refiners/ENMergeDateTimeRefiner": 53, "./refiners/ENMergeRelativeAfterDateRefiner": 54, "./refiners/ENMergeRelativeFollowByDateRefiner": 55, "./refiners/ENUnlikelyFormatFilter": 56 }], 35: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_NO_ABBR_PATTERN = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.TIME_UNIT_DICTIONARY_NO_ABBR = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.FULL_MONTH_NAME_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -2614,7 +2616,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../calculation/years": 3, "../../utils/pattern": 166 }], 36: [function (require, module, exports) {
+            }, { "../../calculation/years": 3, "../../utils/pattern": 167 }], 36: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2643,7 +2645,7 @@ else {
                     return exports.casual.parseDate(text, ref, option);
                 }
                 exports.parseDate = parseDate;
-            }, { "../../chrono": 4, "../../results": 162, "../../types": 164, "./configuration": 34 }], 37: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../results": 163, "../../types": 165, "./configuration": 34 }], 37: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -2725,7 +2727,7 @@ else {
                     return ENCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/dayjs": 165, "dayjs": 168 }], 38: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/dayjs": 166, "dayjs": 169 }], 38: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -2855,7 +2857,7 @@ else {
                     return ENMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 35 }], 40: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 35 }], 40: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -2928,7 +2930,7 @@ else {
                     return ENMonthNameMiddleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENMonthNameMiddleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 35 }], 41: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 35 }], 41: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -2940,7 +2942,7 @@ else {
                     "(".concat(pattern_1.matchAnyPattern(constants_1.MONTH_DICTIONARY), ")") +
                     "\\s*" +
                     "(?:" +
-                    "[,-]?\\s*(".concat(constants_2.YEAR_PATTERN, ")?") +
+                    "(?:,|-|of)?\\s*(".concat(constants_2.YEAR_PATTERN, ")?") +
                     ")?" +
                     "(?=[^\\s\\w]|\\s+[^0-9]|\\s+$|$)", "i");
                 var PREFIX_GROUP = 1;
@@ -2977,7 +2979,7 @@ else {
                     return ENMonthNameParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENMonthNameParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 35 }], 42: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 35 }], 42: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -3039,7 +3041,7 @@ else {
                     return ENRelativeDateFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENRelativeDateFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/pattern": 166, "../constants": 35, "dayjs": 168 }], 43: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/pattern": 167, "../constants": 35, "dayjs": 169 }], 43: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
@@ -3112,10 +3114,17 @@ else {
                         }
                         return components.addTag("parser/ENTimeExpressionParser");
                     };
+                    ENTimeExpressionParser.prototype.extractFollowingTimeComponents = function (context, match, result) {
+                        var followingComponents = _super.prototype.extractFollowingTimeComponents.call(this, context, match, result);
+                        if (followingComponents) {
+                            followingComponents.addTag("parser/ENTimeExpressionParser");
+                        }
+                        return followingComponents;
+                    };
                     return ENTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = ENTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 164 }], 45: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 165 }], 45: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3145,7 +3154,7 @@ else {
                     return ENTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENTimeUnitAgoFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 35 }], 46: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 35 }], 46: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3183,7 +3192,7 @@ else {
                     return ENTimeUnitCasualRelativeFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENTimeUnitCasualRelativeFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 35 }], 47: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 35 }], 47: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3212,7 +3221,7 @@ else {
                     return ENTimeUnitLaterFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENTimeUnitLaterFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 35 }], 48: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 35 }], 48: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3250,17 +3259,18 @@ else {
                     return ENTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 35 }], 49: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 35 }], 49: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
                 var pattern_1 = require("../../../utils/pattern");
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var weekdays_1 = require("../../../common/calculation/weekdays");
+                var types_1 = require("../../../types");
                 var PATTERN = new RegExp("(?:(?:\\,|\\(|\\（)\\s*)?" +
                     "(?:on\\s*?)?" +
                     "(?:(this|last|past|next)\\s*)?" +
-                    "(".concat(pattern_1.matchAnyPattern(constants_1.WEEKDAY_DICTIONARY), ")") +
+                    "(".concat(pattern_1.matchAnyPattern(constants_1.WEEKDAY_DICTIONARY), "|weekend|weekday)") +
                     "(?:\\s*(?:\\,|\\)|\\）))?" +
                     "(?:\\s*(this|last|past|next)\\s*week)?" +
                     "(?=\\W|$)", "i");
@@ -3276,8 +3286,6 @@ else {
                         return PATTERN;
                     };
                     ENWeekdayParser.prototype.innerExtract = function (context, match) {
-                        var dayOfWeek = match[WEEKDAY_GROUP].toLowerCase();
-                        var weekday = constants_1.WEEKDAY_DICTIONARY[dayOfWeek];
                         var prefix = match[PREFIX_GROUP];
                         var postfix = match[POSTFIX_GROUP];
                         var modifierWord = prefix || postfix;
@@ -3293,12 +3301,34 @@ else {
                         else if (modifierWord == "this") {
                             modifier = "this";
                         }
+                        var weekday_word = match[WEEKDAY_GROUP].toLowerCase();
+                        var weekday;
+                        if (constants_1.WEEKDAY_DICTIONARY[weekday_word] !== undefined) {
+                            weekday = constants_1.WEEKDAY_DICTIONARY[weekday_word];
+                        }
+                        else if (weekday_word == "weekend") {
+                            weekday = modifier == "last" ? types_1.Weekday.SUNDAY : types_1.Weekday.SATURDAY;
+                        }
+                        else if (weekday_word == "weekday") {
+                            var refWeekday = context.reference.getDateWithAdjustedTimezone().getDay();
+                            if (refWeekday == types_1.Weekday.SUNDAY || refWeekday == types_1.Weekday.SATURDAY) {
+                                weekday = modifier == "last" ? types_1.Weekday.FRIDAY : types_1.Weekday.MONDAY;
+                            }
+                            else {
+                                weekday = refWeekday - 1;
+                                weekday = modifier == "last" ? weekday - 1 : weekday + 1;
+                                weekday = (weekday % 5) + 1;
+                            }
+                        }
+                        else {
+                            return null;
+                        }
                         return weekdays_1.createParsingComponentsAtWeekday(context.reference, weekday, modifier);
                     };
                     return ENWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 35 }], 50: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/pattern": 167, "../constants": 35 }], 50: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3349,7 +3379,7 @@ else {
                     return ENYearMonthDayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ENYearMonthDayParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 35 }], 51: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 35 }], 51: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3454,7 +3484,7 @@ else {
                     return ENMergeRelativeAfterDateRefiner;
                 }(abstractRefiners_1.MergingRefiner));
                 exports.default = ENMergeRelativeAfterDateRefiner;
-            }, { "../../../common/abstractRefiners": 5, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 35 }], 55: [function (require, module, exports) {
+            }, { "../../../common/abstractRefiners": 5, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 35 }], 55: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var abstractRefiners_1 = require("../../../common/abstractRefiners");
@@ -3495,7 +3525,44 @@ else {
                     return ENMergeRelativeFollowByDateRefiner;
                 }(abstractRefiners_1.MergingRefiner));
                 exports.default = ENMergeRelativeFollowByDateRefiner;
-            }, { "../../../common/abstractRefiners": 5, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 35 }], 56: [function (require, module, exports) {
+            }, { "../../../common/abstractRefiners": 5, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 35 }], 56: [function (require, module, exports) {
+                "use strict";
+                Object.defineProperty(exports, "__esModule", { value: true });
+                var abstractRefiners_1 = require("../../../common/abstractRefiners");
+                var ENUnlikelyFormatFilter = /** @class */ (function (_super) {
+                    __extends(ENUnlikelyFormatFilter, _super);
+                    function ENUnlikelyFormatFilter() {
+                        return _super.call(this) || this;
+                    }
+                    ENUnlikelyFormatFilter.prototype.isValid = function (context, result) {
+                        var text = result.text.trim();
+                        if (text === context.text.trim()) {
+                            return true;
+                        }
+                        if (text.toLowerCase() === "may") {
+                            var textBefore = context.text.substring(0, result.index).trim();
+                            if (!textBefore.match(/\b(in)$/i)) {
+                                context.debug(function () {
+                                    console.log("Removing unlikely result: ".concat(result));
+                                });
+                                return false;
+                            }
+                        }
+                        if (text.toLowerCase().endsWith("the second")) {
+                            var textAfter = context.text.substring(result.index + result.text.length).trim();
+                            if (textAfter.length > 0) {
+                                context.debug(function () {
+                                    console.log("Removing unlikely result: ".concat(result));
+                                });
+                            }
+                            return false;
+                        }
+                        return true;
+                    };
+                    return ENUnlikelyFormatFilter;
+                }(abstractRefiners_1.Filter));
+                exports.default = ENUnlikelyFormatFilter;
+            }, { "../../../common/abstractRefiners": 5 }], 57: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -3660,7 +3727,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../utils/pattern": 166 }], 57: [function (require, module, exports) {
+            }, { "../../utils/pattern": 167 }], 58: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -3719,7 +3786,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/ESCasualDateParser": 58, "./parsers/ESCasualTimeParser": 59, "./parsers/ESMonthNameLittleEndianParser": 60, "./parsers/ESTimeExpressionParser": 61, "./parsers/ESTimeUnitWithinFormatParser": 62, "./parsers/ESWeekdayParser": 63, "./refiners/ESMergeDateRangeRefiner": 64, "./refiners/ESMergeDateTimeRefiner": 65 }], 58: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/ESCasualDateParser": 59, "./parsers/ESCasualTimeParser": 60, "./parsers/ESMonthNameLittleEndianParser": 61, "./parsers/ESTimeExpressionParser": 62, "./parsers/ESTimeUnitWithinFormatParser": 63, "./parsers/ESWeekdayParser": 64, "./refiners/ESMergeDateRangeRefiner": 65, "./refiners/ESMergeDateTimeRefiner": 66 }], 59: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -3775,7 +3842,7 @@ else {
                     return ESCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ESCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 59: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 60: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -3826,7 +3893,7 @@ else {
                     return ESCasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ESCasualTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "dayjs": 168 }], 60: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "dayjs": 169 }], 61: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -3880,7 +3947,7 @@ else {
                     return ESMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ESMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 56 }], 61: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 57 }], 62: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractTimeExpressionParser_1 = require("../../../common/parsers/AbstractTimeExpressionParser");
@@ -3898,7 +3965,7 @@ else {
                     return ESTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = ESTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 62: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 63: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3919,7 +3986,7 @@ else {
                     return ESTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ESTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 56 }], 63: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 57 }], 64: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -3968,7 +4035,7 @@ else {
                     return ESWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ESWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 56 }], 64: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 57 }], 65: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -3986,7 +4053,7 @@ else {
                     return ESMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = ESMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 65: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 66: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4004,7 +4071,7 @@ else {
                     return ESMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = ESMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 66: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 67: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -4172,7 +4239,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../utils/pattern": 166 }], 67: [function (require, module, exports) {
+            }, { "../../utils/pattern": 167 }], 68: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4237,7 +4304,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/FRCasualDateParser": 68, "./parsers/FRCasualTimeParser": 69, "./parsers/FRMonthNameLittleEndianParser": 70, "./parsers/FRSpecificTimeExpressionParser": 71, "./parsers/FRTimeExpressionParser": 72, "./parsers/FRTimeUnitAgoFormatParser": 73, "./parsers/FRTimeUnitRelativeFormatParser": 74, "./parsers/FRTimeUnitWithinFormatParser": 75, "./parsers/FRWeekdayParser": 76, "./refiners/FRMergeDateRangeRefiner": 77, "./refiners/FRMergeDateTimeRefiner": 78 }], 68: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/FRCasualDateParser": 69, "./parsers/FRCasualTimeParser": 70, "./parsers/FRMonthNameLittleEndianParser": 71, "./parsers/FRSpecificTimeExpressionParser": 72, "./parsers/FRTimeExpressionParser": 73, "./parsers/FRTimeUnitAgoFormatParser": 74, "./parsers/FRTimeUnitRelativeFormatParser": 75, "./parsers/FRTimeUnitWithinFormatParser": 76, "./parsers/FRWeekdayParser": 77, "./refiners/FRMergeDateRangeRefiner": 78, "./refiners/FRMergeDateTimeRefiner": 79 }], 69: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -4311,7 +4378,7 @@ else {
                     return FRCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "dayjs": 168 }], 69: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "dayjs": 169 }], 70: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var types_1 = require("../../../types");
@@ -4359,7 +4426,7 @@ else {
                     return FRCasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRCasualTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164 }], 70: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165 }], 71: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -4415,7 +4482,7 @@ else {
                     return FRMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 66 }], 71: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 67 }], 72: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var types_1 = require("../../../types");
@@ -4518,7 +4585,7 @@ else {
                     return FRSpecificTimeExpressionParser;
                 }());
                 exports.default = FRSpecificTimeExpressionParser;
-            }, { "../../../types": 164 }], 72: [function (require, module, exports) {
+            }, { "../../../types": 165 }], 73: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractTimeExpressionParser_1 = require("../../../common/parsers/AbstractTimeExpressionParser");
@@ -4542,7 +4609,7 @@ else {
                     return FRTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = FRTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 73: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 74: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -4565,7 +4632,7 @@ else {
                     return FRTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRTimeUnitAgoFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 66 }], 74: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 67 }], 75: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -4603,7 +4670,7 @@ else {
                     return FRTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRTimeUnitAgoFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/pattern": 166, "../../../utils/timeunits": 167, "../constants": 66 }], 75: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/pattern": 167, "../../../utils/timeunits": 168, "../constants": 67 }], 76: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -4624,7 +4691,7 @@ else {
                     return FRTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 66 }], 76: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 67 }], 77: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -4668,7 +4735,7 @@ else {
                     return FRWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = FRWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 66 }], 77: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 67 }], 78: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4686,7 +4753,7 @@ else {
                     return FRMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = FRMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 78: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 79: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4704,7 +4771,7 @@ else {
                     return FRMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = FRMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 79: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 80: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.toHankaku = void 0;
@@ -4720,7 +4787,7 @@ else {
                 function alphaNum(token) {
                     return String.fromCharCode(token.charCodeAt(0) - 65248);
                 }
-            }, {}], 80: [function (require, module, exports) {
+            }, {}], 81: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4762,7 +4829,7 @@ else {
                     };
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../results": 162, "../../types": 164, "./parsers/JPCasualDateParser": 81, "./parsers/JPStandardParser": 82, "./refiners/JPMergeDateRangeRefiner": 83 }], 81: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../results": 163, "../../types": 165, "./parsers/JPCasualDateParser": 82, "./parsers/JPStandardParser": 83, "./refiners/JPMergeDateRangeRefiner": 84 }], 82: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -4854,7 +4921,7 @@ else {
                     return JPCasualDateParser;
                 }());
                 exports.default = JPCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../types": 164, "dayjs": 168 }], 82: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../types": 165, "dayjs": 169 }], 83: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4910,7 +4977,7 @@ else {
                     return JPStandardParser;
                 }());
                 exports.default = JPStandardParser;
-            }, { "../../../calculation/years": 3, "../constants": 79, "dayjs": 168 }], 83: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../constants": 80, "dayjs": 169 }], 84: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -4928,7 +4995,7 @@ else {
                     return JPMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = JPMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 84: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 85: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -5141,7 +5208,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../calculation/years": 3, "../../utils/pattern": 166 }], 85: [function (require, module, exports) {
+            }, { "../../calculation/years": 3, "../../utils/pattern": 167 }], 86: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5217,7 +5284,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/NLCasualDateParser": 86, "./parsers/NLCasualDateTimeParser": 87, "./parsers/NLCasualTimeParser": 88, "./parsers/NLCasualYearMonthDayParser": 89, "./parsers/NLMonthNameMiddleEndianParser": 90, "./parsers/NLMonthNameParser": 91, "./parsers/NLRelativeDateFormatParser": 92, "./parsers/NLSlashMonthFormatParser": 93, "./parsers/NLTimeExpressionParser": 94, "./parsers/NLTimeUnitAgoFormatParser": 95, "./parsers/NLTimeUnitCasualRelativeFormatParser": 96, "./parsers/NLTimeUnitLaterFormatParser": 97, "./parsers/NLTimeUnitWithinFormatParser": 98, "./parsers/NLWeekdayParser": 99, "./refiners/NLMergeDateRangeRefiner": 100, "./refiners/NLMergeDateTimeRefiner": 101 }], 86: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/NLCasualDateParser": 87, "./parsers/NLCasualDateTimeParser": 88, "./parsers/NLCasualTimeParser": 89, "./parsers/NLCasualYearMonthDayParser": 90, "./parsers/NLMonthNameMiddleEndianParser": 91, "./parsers/NLMonthNameParser": 92, "./parsers/NLRelativeDateFormatParser": 93, "./parsers/NLSlashMonthFormatParser": 94, "./parsers/NLTimeExpressionParser": 95, "./parsers/NLTimeUnitAgoFormatParser": 96, "./parsers/NLTimeUnitCasualRelativeFormatParser": 97, "./parsers/NLTimeUnitLaterFormatParser": 98, "./parsers/NLTimeUnitWithinFormatParser": 99, "./parsers/NLWeekdayParser": 100, "./refiners/NLMergeDateRangeRefiner": 101, "./refiners/NLMergeDateTimeRefiner": 102 }], 87: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -5274,7 +5341,7 @@ else {
                     return NLCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 87: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 88: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5333,7 +5400,7 @@ else {
                     return NLCasualDateTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLCasualDateTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "dayjs": 168 }], 88: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "dayjs": 169 }], 89: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5394,7 +5461,7 @@ else {
                     return NLCasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLCasualTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "dayjs": 168 }], 89: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "dayjs": 169 }], 90: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5434,7 +5501,7 @@ else {
                     return NLCasualYearMonthDayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLCasualYearMonthDayParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 84 }], 90: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 85 }], 91: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -5502,7 +5569,7 @@ else {
                     return NLMonthNameMiddleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLMonthNameMiddleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 84 }], 91: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 85 }], 92: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5545,7 +5612,7 @@ else {
                     return NLMonthNameParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLMonthNameParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 84 }], 92: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 85 }], 93: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5608,7 +5675,7 @@ else {
                     return NLRelativeDateFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLRelativeDateFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/pattern": 166, "../constants": 84, "dayjs": 168 }], 93: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/pattern": 167, "../constants": 85, "dayjs": 169 }], 94: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
@@ -5631,7 +5698,7 @@ else {
                     return NLSlashMonthFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLSlashMonthFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 94: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 95: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractTimeExpressionParser_1 = require("../../../common/parsers/AbstractTimeExpressionParser");
@@ -5658,7 +5725,7 @@ else {
                     return NLTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = NLTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 95: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 96: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5685,7 +5752,7 @@ else {
                     return NLTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLTimeUnitAgoFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 84 }], 96: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 85 }], 97: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5718,7 +5785,7 @@ else {
                     return NLTimeUnitCasualRelativeFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLTimeUnitCasualRelativeFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 84 }], 97: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 85 }], 98: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5744,7 +5811,7 @@ else {
                     return NLTimeUnitLaterFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLTimeUnitLaterFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 84 }], 98: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 85 }], 99: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -5765,7 +5832,7 @@ else {
                     return NLTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 84 }], 99: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 85 }], 100: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../../nl/constants");
@@ -5811,7 +5878,7 @@ else {
                     return NLWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = NLWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../../nl/constants": 84 }], 100: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../../nl/constants": 85 }], 101: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5829,7 +5896,7 @@ else {
                     return NLMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = NLMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 101: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 102: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5847,7 +5914,7 @@ else {
                     return NLMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = NLMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 102: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 103: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseYear = exports.YEAR_PATTERN = exports.MONTH_DICTIONARY = exports.WEEKDAY_DICTIONARY = void 0;
@@ -5932,7 +5999,7 @@ else {
                     return parseInt(match);
                 }
                 exports.parseYear = parseYear;
-            }, {}], 103: [function (require, module, exports) {
+            }, {}], 104: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5989,7 +6056,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/PTCasualDateParser": 104, "./parsers/PTCasualTimeParser": 105, "./parsers/PTMonthNameLittleEndianParser": 106, "./parsers/PTTimeExpressionParser": 107, "./parsers/PTWeekdayParser": 108, "./refiners/PTMergeDateRangeRefiner": 109, "./refiners/PTMergeDateTimeRefiner": 110 }], 104: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/PTCasualDateParser": 105, "./parsers/PTCasualTimeParser": 106, "./parsers/PTMonthNameLittleEndianParser": 107, "./parsers/PTTimeExpressionParser": 108, "./parsers/PTWeekdayParser": 109, "./refiners/PTMergeDateRangeRefiner": 110, "./refiners/PTMergeDateTimeRefiner": 111 }], 105: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -6046,7 +6113,7 @@ else {
                     return PTCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = PTCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 105: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../common/parsers/AbstractParserWithWordBoundary": 8 }], 106: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6097,7 +6164,7 @@ else {
                     return PTCasualTimeParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = PTCasualTimeParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 164, "../../../utils/dayjs": 165, "dayjs": 168 }], 106: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../types": 165, "../../../utils/dayjs": 166, "dayjs": 169 }], 107: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -6151,7 +6218,7 @@ else {
                     return PTMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = PTMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 102 }], 107: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 103 }], 108: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var AbstractTimeExpressionParser_1 = require("../../../common/parsers/AbstractTimeExpressionParser");
@@ -6169,7 +6236,7 @@ else {
                     return PTTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = PTTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 108: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9 }], 109: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -6218,7 +6285,7 @@ else {
                     return PTWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = PTWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 166, "../constants": 102 }], 109: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../utils/pattern": 167, "../constants": 103 }], 110: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6236,7 +6303,7 @@ else {
                     return PTMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = PTMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 110: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 111: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6254,7 +6321,7 @@ else {
                     return PTMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = PTMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 111: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 112: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYear = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.FULL_MONTH_NAME_DICTIONARY = exports.WEEKDAY_DICTIONARY = exports.REGEX_PARTS = void 0;
@@ -6558,7 +6625,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../calculation/years": 3, "../../utils/pattern": 166 }], 112: [function (require, module, exports) {
+            }, { "../../calculation/years": 3, "../../utils/pattern": 167 }], 113: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6623,7 +6690,7 @@ else {
                     }, strictMode);
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/RUCasualDateParser": 114, "./parsers/RUCasualTimeParser": 115, "./parsers/RUMonthNameLittleEndianParser": 116, "./parsers/RUMonthNameParser": 117, "./parsers/RURelativeDateFormatParser": 118, "./parsers/RUTimeExpressionParser": 119, "./parsers/RUTimeUnitAgoFormatParser": 120, "./parsers/RUTimeUnitCasualRelativeFormatParser": 121, "./parsers/RUTimeUnitWithinFormatParser": 122, "./parsers/RUWeekdayParser": 123, "./refiners/RUMergeDateRangeRefiner": 124, "./refiners/RUMergeDateTimeRefiner": 125 }], 113: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/RUCasualDateParser": 115, "./parsers/RUCasualTimeParser": 116, "./parsers/RUMonthNameLittleEndianParser": 117, "./parsers/RUMonthNameParser": 118, "./parsers/RURelativeDateFormatParser": 119, "./parsers/RUTimeExpressionParser": 120, "./parsers/RUTimeUnitAgoFormatParser": 121, "./parsers/RUTimeUnitCasualRelativeFormatParser": 122, "./parsers/RUTimeUnitWithinFormatParser": 123, "./parsers/RUWeekdayParser": 124, "./refiners/RUMergeDateRangeRefiner": 125, "./refiners/RUMergeDateTimeRefiner": 126 }], 114: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.AbstractParserWithLeftRightBoundaryChecking = exports.AbstractParserWithLeftBoundaryChecking = void 0;
@@ -6657,7 +6724,7 @@ else {
                     return AbstractParserWithLeftRightBoundaryChecking;
                 }(AbstractParserWithLeftBoundaryChecking));
                 exports.AbstractParserWithLeftRightBoundaryChecking = AbstractParserWithLeftRightBoundaryChecking;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 111 }], 114: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 112 }], 115: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -6719,7 +6786,7 @@ else {
                     return RUCasualDateParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RUCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "./AbstractParserWithWordBoundaryChecking": 113 }], 115: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "./AbstractParserWithWordBoundaryChecking": 114 }], 116: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -6798,7 +6865,7 @@ else {
                     return RUCasualTimeParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RUCasualTimeParser;
-            }, { "../../../common/casualReferences": 7, "../../../utils/dayjs": 165, "./AbstractParserWithWordBoundaryChecking": 113, "dayjs": 168 }], 116: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../utils/dayjs": 166, "./AbstractParserWithWordBoundaryChecking": 114, "dayjs": 169 }], 117: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -6857,7 +6924,7 @@ else {
                     return RUMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RUMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../utils/pattern": 166, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113 }], 117: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../utils/pattern": 167, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114 }], 118: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -6903,7 +6970,7 @@ else {
                     return RUMonthNameParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftBoundaryChecking));
                 exports.default = RUMonthNameParser;
-            }, { "../../../calculation/years": 3, "../../../utils/pattern": 166, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113 }], 118: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../utils/pattern": 167, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114 }], 119: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6964,7 +7031,7 @@ else {
                     return RURelativeDateFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RURelativeDateFormatParser;
-            }, { "../../../results": 162, "../../../utils/pattern": 166, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113, "dayjs": 168 }], 119: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/pattern": 167, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114, "dayjs": 169 }], 120: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var types_1 = require("../../../types");
@@ -7023,7 +7090,7 @@ else {
                     return RUTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = RUTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 164, "../constants": 111 }], 120: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 165, "../constants": 112 }], 121: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7046,7 +7113,7 @@ else {
                     return RUTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftBoundaryChecking));
                 exports.default = RUTimeUnitAgoFormatParser;
-            }, { "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113 }], 121: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114 }], 122: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7076,7 +7143,7 @@ else {
                     return RUTimeUnitCasualRelativeFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RUTimeUnitCasualRelativeFormatParser;
-            }, { "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113 }], 122: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114 }], 123: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7103,7 +7170,7 @@ else {
                     return RUTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = RUTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 111 }], 123: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 112 }], 124: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7152,7 +7219,7 @@ else {
                     return RUWeekdayParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = RUWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../utils/pattern": 166, "../constants": 111, "./AbstractParserWithWordBoundaryChecking": 113 }], 124: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../utils/pattern": 167, "../constants": 112, "./AbstractParserWithWordBoundaryChecking": 114 }], 125: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -7170,7 +7237,7 @@ else {
                     return RUMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = RUMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 125: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 126: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -7188,7 +7255,7 @@ else {
                     return RUMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = RUMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 126: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 127: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.parseTimeUnits = exports.TIME_UNITS_PATTERN = exports.parseYearPattern = exports.YEAR_PATTERN = exports.parseOrdinalNumberPattern = exports.ORDINAL_NUMBER_PATTERN = exports.parseNumberPattern = exports.NUMBER_PATTERN = exports.TIME_UNIT_DICTIONARY = exports.ORDINAL_WORD_DICTIONARY = exports.INTEGER_WORD_DICTIONARY = exports.MONTH_DICTIONARY = exports.FULL_MONTH_NAME_DICTIONARY = exports.WEEKDAY_DICTIONARY = exports.REGEX_PARTS = void 0;
@@ -7489,7 +7556,7 @@ else {
                     var unit = exports.TIME_UNIT_DICTIONARY[match[2].toLowerCase()];
                     fragments[unit] = num;
                 }
-            }, { "../../calculation/years": 3, "../../utils/pattern": 166 }], 127: [function (require, module, exports) {
+            }, { "../../calculation/years": 3, "../../utils/pattern": 167 }], 128: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -7555,9 +7622,9 @@ else {
                     return exports.casual.parseDate(text, ref, option);
                 }
                 exports.parseDate = parseDate;
-            }, { "../../chrono": 4, "../../common/parsers/ISOFormatParser": 10, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 162, "../../types": 164, "./parsers/UKCasualDateParser": 129, "./parsers/UKCasualTimeParser": 130, "./parsers/UKMonthNameLittleEndianParser": 131, "./parsers/UKMonthNameParser": 132, "./parsers/UKRelativeDateFormatParser": 133, "./parsers/UKTimeExpressionParser": 134, "./parsers/UKTimeUnitAgoFormatParser": 135, "./parsers/UKTimeUnitCasualRelativeFormatParser": 136, "./parsers/UKTimeUnitWithinFormatParser": 137, "./parsers/UKWeekdayParser": 138, "./refiners/UKMergeDateRangeRefiner": 139, "./refiners/UKMergeDateTimeRefiner": 140 }], 128: [function (require, module, exports) {
-                arguments[4][113][0].apply(exports, arguments);
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 126, "dup": 113 }], 129: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/parsers/ISOFormatParser": 10, "../../common/parsers/SlashDateFormatParser": 11, "../../configurations": 20, "../../results": 163, "../../types": 165, "./parsers/UKCasualDateParser": 130, "./parsers/UKCasualTimeParser": 131, "./parsers/UKMonthNameLittleEndianParser": 132, "./parsers/UKMonthNameParser": 133, "./parsers/UKRelativeDateFormatParser": 134, "./parsers/UKTimeExpressionParser": 135, "./parsers/UKTimeUnitAgoFormatParser": 136, "./parsers/UKTimeUnitCasualRelativeFormatParser": 137, "./parsers/UKTimeUnitWithinFormatParser": 138, "./parsers/UKWeekdayParser": 139, "./refiners/UKMergeDateRangeRefiner": 140, "./refiners/UKMergeDateTimeRefiner": 141 }], 129: [function (require, module, exports) {
+                arguments[4][114][0].apply(exports, arguments);
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 127, "dup": 114 }], 130: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -7619,7 +7686,7 @@ else {
                     return UKCasualDateParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKCasualDateParser;
-            }, { "../../../common/casualReferences": 7, "./AbstractParserWithWordBoundaryChecking": 128 }], 130: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "./AbstractParserWithWordBoundaryChecking": 129 }], 131: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -7701,7 +7768,7 @@ else {
                     return UKCasualTimeParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKCasualTimeParser;
-            }, { "../../../common/casualReferences": 7, "../../../utils/dayjs": 165, "./AbstractParserWithWordBoundaryChecking": 128, "dayjs": 168 }], 131: [function (require, module, exports) {
+            }, { "../../../common/casualReferences": 7, "../../../utils/dayjs": 166, "./AbstractParserWithWordBoundaryChecking": 129, "dayjs": 169 }], 132: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var years_1 = require("../../../calculation/years");
@@ -7760,7 +7827,7 @@ else {
                     return UKMonthNameLittleEndianParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKMonthNameLittleEndianParser;
-            }, { "../../../calculation/years": 3, "../../../utils/pattern": 166, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128 }], 132: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../utils/pattern": 167, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129 }], 133: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7806,7 +7873,7 @@ else {
                     return UkMonthNameParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftBoundaryChecking));
                 exports.default = UkMonthNameParser;
-            }, { "../../../calculation/years": 3, "../../../utils/pattern": 166, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128 }], 133: [function (require, module, exports) {
+            }, { "../../../calculation/years": 3, "../../../utils/pattern": 167, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129 }], 134: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -7874,7 +7941,7 @@ else {
                     return UKRelativeDateFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKRelativeDateFormatParser;
-            }, { "../../../results": 162, "../../../utils/pattern": 166, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128, "dayjs": 168 }], 134: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/pattern": 167, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129, "dayjs": 169 }], 135: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var types_1 = require("../../../types");
@@ -7933,7 +8000,7 @@ else {
                     return UKTimeExpressionParser;
                 }(AbstractTimeExpressionParser_1.AbstractTimeExpressionParser));
                 exports.default = UKTimeExpressionParser;
-            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 164, "../constants": 126 }], 135: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractTimeExpressionParser": 9, "../../../types": 165, "../constants": 127 }], 136: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7956,7 +8023,7 @@ else {
                     return UKTimeUnitAgoFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftBoundaryChecking));
                 exports.default = UKTimeUnitAgoFormatParser;
-            }, { "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128 }], 136: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129 }], 137: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -7986,7 +8053,7 @@ else {
                     return UKTimeUnitCasualRelativeFormatParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKTimeUnitCasualRelativeFormatParser;
-            }, { "../../../results": 162, "../../../utils/timeunits": 167, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128 }], 137: [function (require, module, exports) {
+            }, { "../../../results": 163, "../../../utils/timeunits": 168, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129 }], 138: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -8013,7 +8080,7 @@ else {
                     return UKTimeUnitWithinFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = UKTimeUnitWithinFormatParser;
-            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 162, "../constants": 126 }], 138: [function (require, module, exports) {
+            }, { "../../../common/parsers/AbstractParserWithWordBoundary": 8, "../../../results": 163, "../constants": 127 }], 139: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var constants_1 = require("../constants");
@@ -8063,7 +8130,7 @@ else {
                     return UKWeekdayParser;
                 }(AbstractParserWithWordBoundaryChecking_1.AbstractParserWithLeftRightBoundaryChecking));
                 exports.default = UKWeekdayParser;
-            }, { "../../../common/calculation/weekdays": 6, "../../../utils/pattern": 166, "../constants": 126, "./AbstractParserWithWordBoundaryChecking": 128 }], 139: [function (require, module, exports) {
+            }, { "../../../common/calculation/weekdays": 6, "../../../utils/pattern": 167, "../constants": 127, "./AbstractParserWithWordBoundaryChecking": 129 }], 140: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8081,7 +8148,7 @@ else {
                     return UKMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = UKMergeDateRangeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 140: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 141: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8099,7 +8166,7 @@ else {
                     return UKMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = UKMergeDateTimeRefiner;
-            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 141: [function (require, module, exports) {
+            }, { "../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 142: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.zhStringToYear = exports.zhStringToNumber = exports.WEEKDAY_OFFSET = exports.NUMBER = void 0;
@@ -8151,7 +8218,7 @@ else {
                     return parseInt(string);
                 }
                 exports.zhStringToYear = zhStringToYear;
-            }, {}], 142: [function (require, module, exports) {
+            }, {}], 143: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8209,7 +8276,7 @@ else {
                     return configuration;
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../../chrono": 4, "../../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../../configurations": 20, "../../../results": 162, "../../../types": 164, "./parsers/ZHHansCasualDateParser": 143, "./parsers/ZHHansDateParser": 144, "./parsers/ZHHansDeadlineFormatParser": 145, "./parsers/ZHHansRelationWeekdayParser": 146, "./parsers/ZHHansTimeExpressionParser": 147, "./parsers/ZHHansWeekdayParser": 148, "./refiners/ZHHansMergeDateRangeRefiner": 149, "./refiners/ZHHansMergeDateTimeRefiner": 150 }], 143: [function (require, module, exports) {
+            }, { "../../../chrono": 4, "../../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../../configurations": 20, "../../../results": 163, "../../../types": 165, "./parsers/ZHHansCasualDateParser": 144, "./parsers/ZHHansDateParser": 145, "./parsers/ZHHansDeadlineFormatParser": 146, "./parsers/ZHHansRelationWeekdayParser": 147, "./parsers/ZHHansTimeExpressionParser": 148, "./parsers/ZHHansWeekdayParser": 149, "./refiners/ZHHansMergeDateRangeRefiner": 150, "./refiners/ZHHansMergeDateTimeRefiner": 151 }], 144: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8353,7 +8420,7 @@ else {
                     return ZHHansCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansCasualDateParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "dayjs": 168 }], 144: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "dayjs": 169 }], 145: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8431,7 +8498,7 @@ else {
                     return ZHHansDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansDateParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 141, "dayjs": 168 }], 145: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 142, "dayjs": 169 }], 146: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8515,7 +8582,7 @@ else {
                     return ZHHansDeadlineFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansDeadlineFormatParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 141, "dayjs": 168 }], 146: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 142, "dayjs": 169 }], 147: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -8591,7 +8658,7 @@ else {
                     return ZHHansRelationWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansRelationWeekdayParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 141, "dayjs": 168 }], 147: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 142, "dayjs": 169 }], 148: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9035,7 +9102,7 @@ else {
                     return ZHHansTimeExpressionParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansTimeExpressionParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 141, "dayjs": 168 }], 148: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 142, "dayjs": 169 }], 149: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9087,7 +9154,7 @@ else {
                     return ZHHansWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHansWeekdayParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 141, "dayjs": 168 }], 149: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 142, "dayjs": 169 }], 150: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9105,7 +9172,7 @@ else {
                     return ZHHansMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = ZHHansMergeDateRangeRefiner;
-            }, { "../../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 150: [function (require, module, exports) {
+            }, { "../../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 151: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9123,7 +9190,7 @@ else {
                     return ZHHansMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = ZHHansMergeDateTimeRefiner;
-            }, { "../../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 151: [function (require, module, exports) {
+            }, { "../../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 152: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.zhStringToYear = exports.zhStringToNumber = exports.WEEKDAY_OFFSET = exports.NUMBER = void 0;
@@ -9176,7 +9243,7 @@ else {
                     return parseInt(string);
                 }
                 exports.zhStringToYear = zhStringToYear;
-            }, {}], 152: [function (require, module, exports) {
+            }, {}], 153: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9234,7 +9301,7 @@ else {
                     return configuration;
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../../chrono": 4, "../../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../../configurations": 20, "../../../results": 162, "../../../types": 164, "./parsers/ZHHantCasualDateParser": 153, "./parsers/ZHHantDateParser": 154, "./parsers/ZHHantDeadlineFormatParser": 155, "./parsers/ZHHantRelationWeekdayParser": 156, "./parsers/ZHHantTimeExpressionParser": 157, "./parsers/ZHHantWeekdayParser": 158, "./refiners/ZHHantMergeDateRangeRefiner": 159, "./refiners/ZHHantMergeDateTimeRefiner": 160 }], 153: [function (require, module, exports) {
+            }, { "../../../chrono": 4, "../../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../../configurations": 20, "../../../results": 163, "../../../types": 165, "./parsers/ZHHantCasualDateParser": 154, "./parsers/ZHHantDateParser": 155, "./parsers/ZHHantDeadlineFormatParser": 156, "./parsers/ZHHantRelationWeekdayParser": 157, "./parsers/ZHHantTimeExpressionParser": 158, "./parsers/ZHHantWeekdayParser": 159, "./refiners/ZHHantMergeDateRangeRefiner": 160, "./refiners/ZHHantMergeDateTimeRefiner": 161 }], 154: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9378,7 +9445,7 @@ else {
                     return ZHHantCasualDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantCasualDateParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "dayjs": 168 }], 154: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "dayjs": 169 }], 155: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9448,7 +9515,7 @@ else {
                     return ZHHantDateParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantDateParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 151, "dayjs": 168 }], 155: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 152, "dayjs": 169 }], 156: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9532,7 +9599,7 @@ else {
                     return ZHHantDeadlineFormatParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantDeadlineFormatParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 151, "dayjs": 168 }], 156: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 152, "dayjs": 169 }], 157: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -9608,7 +9675,7 @@ else {
                     return ZHHantRelationWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantRelationWeekdayParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 151, "dayjs": 168 }], 157: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 152, "dayjs": 169 }], 158: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10052,7 +10119,7 @@ else {
                     return ZHHantTimeExpressionParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantTimeExpressionParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 151, "dayjs": 168 }], 158: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 152, "dayjs": 169 }], 159: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10104,7 +10171,7 @@ else {
                     return ZHHantWeekdayParser;
                 }(AbstractParserWithWordBoundary_1.AbstractParserWithWordBoundaryChecking));
                 exports.default = ZHHantWeekdayParser;
-            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 151, "dayjs": 168 }], 159: [function (require, module, exports) {
+            }, { "../../../../common/parsers/AbstractParserWithWordBoundary": 8, "../constants": 152, "dayjs": 169 }], 160: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10122,7 +10189,7 @@ else {
                     return ZHHantMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
                 exports.default = ZHHantMergeDateRangeRefiner;
-            }, { "../../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 160: [function (require, module, exports) {
+            }, { "../../../../common/refiners/AbstractMergeDateRangeRefiner": 12 }], 161: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10140,7 +10207,7 @@ else {
                     return ZHHantMergeDateTimeRefiner;
                 }(AbstractMergeDateTimeRefiner_1.default));
                 exports.default = ZHHantMergeDateTimeRefiner;
-            }, { "../../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 161: [function (require, module, exports) {
+            }, { "../../../../common/refiners/AbstractMergeDateTimeRefiner": 13 }], 162: [function (require, module, exports) {
                 "use strict";
                 var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
                     if (k2 === undefined)
@@ -10234,7 +10301,7 @@ else {
                     return configuration;
                 }
                 exports.createConfiguration = createConfiguration;
-            }, { "../../chrono": 4, "../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../configurations": 20, "../../results": 162, "../../types": 164, "./hans": 142, "./hans/parsers/ZHHansDateParser": 144, "./hans/parsers/ZHHansDeadlineFormatParser": 145, "./hans/parsers/ZHHansRelationWeekdayParser": 146, "./hans/parsers/ZHHansTimeExpressionParser": 147, "./hans/parsers/ZHHansWeekdayParser": 148, "./hant": 152, "./hant/parsers/ZHHantCasualDateParser": 153, "./hant/parsers/ZHHantDateParser": 154, "./hant/parsers/ZHHantDeadlineFormatParser": 155, "./hant/parsers/ZHHantRelationWeekdayParser": 156, "./hant/parsers/ZHHantTimeExpressionParser": 157, "./hant/parsers/ZHHantWeekdayParser": 158, "./hant/refiners/ZHHantMergeDateRangeRefiner": 159, "./hant/refiners/ZHHantMergeDateTimeRefiner": 160 }], 162: [function (require, module, exports) {
+            }, { "../../chrono": 4, "../../common/refiners/ExtractTimezoneOffsetRefiner": 15, "../../configurations": 20, "../../results": 163, "../../types": 165, "./hans": 143, "./hans/parsers/ZHHansDateParser": 145, "./hans/parsers/ZHHansDeadlineFormatParser": 146, "./hans/parsers/ZHHansRelationWeekdayParser": 147, "./hans/parsers/ZHHansTimeExpressionParser": 148, "./hans/parsers/ZHHansWeekdayParser": 149, "./hant": 153, "./hant/parsers/ZHHantCasualDateParser": 154, "./hant/parsers/ZHHantDateParser": 155, "./hant/parsers/ZHHantDeadlineFormatParser": 156, "./hant/parsers/ZHHantRelationWeekdayParser": 157, "./hant/parsers/ZHHantTimeExpressionParser": 158, "./hant/parsers/ZHHantWeekdayParser": 159, "./hant/refiners/ZHHantMergeDateRangeRefiner": 160, "./hant/refiners/ZHHantMergeDateTimeRefiner": 161 }], 163: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10398,7 +10465,9 @@ else {
                             date = date.add(fragments[key], key);
                         }
                         var components = new ParsingComponents(reference);
+                        components.addTag("result/relativeDate");
                         if (fragments["hour"] || fragments["minute"] || fragments["second"]) {
+                            components.addTag("result/relativeDateAndTime");
                             dayjs_2.assignSimilarTime(components, date);
                             dayjs_2.assignSimilarDate(components, date);
                             if (reference.timezoneOffset !== null) {
@@ -10461,6 +10530,20 @@ else {
                     ParsingResult.prototype.date = function () {
                         return this.start.date();
                     };
+                    ParsingResult.prototype.addTag = function (tag) {
+                        this.start.addTag(tag);
+                        if (this.end) {
+                            this.end.addTag(tag);
+                        }
+                        return this;
+                    };
+                    ParsingResult.prototype.addTags = function (tags) {
+                        this.start.addTags(tags);
+                        if (this.end) {
+                            this.end.addTags(tags);
+                        }
+                        return this;
+                    };
                     ParsingResult.prototype.tags = function () {
                         var combinedTags = new Set(this.start.tags());
                         if (this.end) {
@@ -10478,7 +10561,7 @@ else {
                     return ParsingResult;
                 }());
                 exports.ParsingResult = ParsingResult;
-            }, { "./timezone": 163, "./utils/dayjs": 165, "dayjs": 168, "dayjs/plugin/quarterOfYear": 169 }], 163: [function (require, module, exports) {
+            }, { "./timezone": 164, "./utils/dayjs": 166, "dayjs": 169, "dayjs/plugin/quarterOfYear": 170 }], 164: [function (require, module, exports) {
                 "use strict";
                 var __importDefault = (this && this.__importDefault) || function (mod) {
                     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10762,7 +10845,7 @@ else {
                     return matchedTimezone.timezoneOffsetNonDst;
                 }
                 exports.toTimezoneOffset = toTimezoneOffset;
-            }, { "./types": 164, "dayjs": 168 }], 164: [function (require, module, exports) {
+            }, { "./types": 165, "dayjs": 169 }], 165: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.Month = exports.Weekday = exports.Meridiem = void 0;
@@ -10796,7 +10879,7 @@ else {
                     Month[Month["NOVEMBER"] = 11] = "NOVEMBER";
                     Month[Month["DECEMBER"] = 12] = "DECEMBER";
                 })(Month = exports.Month || (exports.Month = {}));
-            }, {}], 165: [function (require, module, exports) {
+            }, {}], 166: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.implySimilarTime = exports.implySimilarDate = exports.assignSimilarTime = exports.assignSimilarDate = exports.implyTheNextDay = exports.assignTheNextDay = void 0;
@@ -10845,7 +10928,7 @@ else {
                     component.imply("millisecond", targetDayJs.millisecond());
                 }
                 exports.implySimilarTime = implySimilarTime;
-            }, { "../types": 164 }], 166: [function (require, module, exports) {
+            }, { "../types": 165 }], 167: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.matchAnyPattern = exports.extractTerms = exports.repeatedTimeunitPattern = void 0;
@@ -10877,7 +10960,7 @@ else {
                     return "(?:".concat(joinedTerms, ")");
                 }
                 exports.matchAnyPattern = matchAnyPattern;
-            }, {}], 167: [function (require, module, exports) {
+            }, {}], 168: [function (require, module, exports) {
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 exports.addImpliedTimeUnits = exports.reverseTimeUnits = void 0;
@@ -10908,7 +10991,7 @@ else {
                     return output;
                 }
                 exports.addImpliedTimeUnits = addImpliedTimeUnits;
-            }, {}], 168: [function (require, module, exports) {
+            }, {}], 169: [function (require, module, exports) {
                 !function (t, e) { "object" == typeof exports && "undefined" != typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define(e) : (t = "undefined" != typeof globalThis ? globalThis : t || self).dayjs = e(); }(this, (function () {
                     "use strict";
                     var t = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", c = "month", f = "quarter", h = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function (t) { var e = ["th", "st", "nd", "rd"], n = t % 100; return "[" + t + (e[(n - 20) % 10] || e[n] || e[0]) + "]"; } }, m = function (t, e, n) { var r = String(t); return !r || r.length >= e ? t : "" + Array(e + 1 - r.length).join(n) + t; }, v = { s: m, z: function (t) { var e = -t.utcOffset(), n = Math.abs(e), r = Math.floor(n / 60), i = n % 60; return (e <= 0 ? "+" : "-") + m(r, 2, "0") + ":" + m(i, 2, "0"); }, m: function t(e, n) { if (e.date() < n.date())
@@ -11014,7 +11097,7 @@ else {
                         return this.$L; var n = this.clone(), r = w(t, e, !0); return r && (n.$L = r), n; }, m.clone = function () { return b.w(this.$d, this); }, m.toDate = function () { return new Date(this.valueOf()); }, m.toJSON = function () { return this.isValid() ? this.toISOString() : null; }, m.toISOString = function () { return this.$d.toISOString(); }, m.toString = function () { return this.$d.toUTCString(); }, M; }(), k = _.prototype;
                     return O.prototype = k, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", c], ["$y", h], ["$D", d]].forEach((function (t) { k[t[1]] = function (e) { return this.$g(e, t[0], t[1]); }; })), O.extend = function (t, e) { return t.$i || (t(e, _, O), t.$i = !0), O; }, O.locale = w, O.isDayjs = S, O.unix = function (t) { return O(1e3 * t); }, O.en = D[g], O.Ls = D, O.p = {}, O;
                 }));
-            }, {}], 169: [function (require, module, exports) {
+            }, {}], 170: [function (require, module, exports) {
                 !function (t, n) { "object" == typeof exports && "undefined" != typeof module ? module.exports = n() : "function" == typeof define && define.amd ? define(n) : (t = "undefined" != typeof globalThis ? globalThis : t || self).dayjs_plugin_quarterOfYear = n(); }(this, (function () {
                     "use strict";
                     var t = "month", n = "quarter";
