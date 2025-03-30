@@ -2680,7 +2680,7 @@ else {
                 var AbstractParserWithWordBoundary_1 = require("../../../common/parsers/AbstractParserWithWordBoundary");
                 var dayjs_2 = require("../../../utils/dayjs");
                 var references = __importStar(require("../../../common/casualReferences"));
-                var PATTERN = /(now|today|tonight|tomorrow|tmr|tmrw|yesterday|last\s*night)(?=\W|$)/i;
+                var PATTERN = /(now|today|tonight|tomorrow|overmorrow|tmr|tmrw|yesterday|last\s*night)(?=\W|$)/i;
                 var ENCasualDateParser = /** @class */ (function (_super) {
                     __extends(ENCasualDateParser, _super);
                     function ENCasualDateParser() {
@@ -2710,6 +2710,9 @@ else {
                                 break;
                             case "tonight":
                                 component = references.tonight(context.reference);
+                                break;
+                            case "overmorrow":
+                                component = references.theDayAfter(context.reference, 2);
                                 break;
                             default:
                                 if (lowerText.match(/last\s*night/)) {
@@ -4863,13 +4866,13 @@ else {
                 var dayjs_1 = __importDefault(require("dayjs"));
                 var types_1 = require("../../../types");
                 var references = __importStar(require("../../../common/casualReferences"));
-                var PATTERN = /今日|きょう|当日|とうじつ|昨日|きのう|明日|あした|今夜|こんや|今夕|こんゆう|今晩|こんばん|今朝|けさ/i;
+                var PATTERN = /今日|きょう|本日|ほんじつ|昨日|きのう|明日|あした|今夜|こんや|今夕|こんゆう|今晩|こんばん|今朝|けさ/i;
                 function normalizeTextToKanji(text) {
                     switch (text) {
                         case "きょう":
                             return "今日";
-                        case "とうじつ":
-                            return "当日";
+                        case "ほんじつ":
+                            return "本日";
                         case "きのう":
                             return "昨日";
                         case "あした":
@@ -4901,8 +4904,8 @@ else {
                                 return references.yesterday(context.reference);
                             case "明日":
                                 return references.tomorrow(context.reference);
+                            case "本日":
                             case "今日":
-                            case "当日":
                                 return references.today(context.reference);
                         }
                         if (text == "今夜" || text == "今夕" || text == "今晩") {
@@ -4990,7 +4993,7 @@ else {
                         return _super !== null && _super.apply(this, arguments) || this;
                     }
                     JPMergeDateRangeRefiner.prototype.patternBetween = function () {
-                        return /^\s*(から|ー|-)\s*$/i;
+                        return /^\s*(から|ー|-|～|~)\s*$/i;
                     };
                     return JPMergeDateRangeRefiner;
                 }(AbstractMergeDateRangeRefiner_1.default));
